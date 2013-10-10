@@ -50,4 +50,8 @@ gem 'paperclip'
 
 gem 'rspec'
 
+group :test, :development do
+  gem 'rspec-rails'
+end
+
 gem 'rr'
