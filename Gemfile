@@ -43,3 +43,11 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'haml'
+
+gem 'paperclip'
+
+gem 'rspec'
+
+gem 'rr'
