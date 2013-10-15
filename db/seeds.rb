@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Artwork.create!(
+  :locked => false,
+  :name => 'cmbr',
+  :image => File.open('/Users/leggerssignups/work/bombsheller/artemix/cmbr.jpg')
+  )
+p "Created cmbr image"
