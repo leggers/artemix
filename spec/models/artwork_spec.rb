@@ -28,8 +28,9 @@ describe Artwork do
       valid_attributes.delete(:image)
       expect{ Artwork.create!(valid_attributes) }.to raise_error
     end
-  end
-  it 'should not save with repeat name' do
-    expect{ Artwork.create!(valid_attributes) }.to raise_error
+    it 'with repeat name' do
+      Artwork.create!(valid_attributes)
+      expect{ Artwork.create!(valid_attributes) }.to raise_error
+    end
   end
 end
