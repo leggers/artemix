@@ -6,32 +6,80 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-rocket = Artwork.create!(
-  :locked => false,
-  :name => 'rocket',
-  :image => File.open( "#{Rails.root}/app/assets/images/rocket.jpg" )
-  )
-p "Created rocket Artwork"
+transform_defaults = {
+  :image_x => 330,
+  :image_y => 1000,
+  :width => 5425,
+  :height => 11275,
+}
+
 template = Artwork.create!(
-  :locked => false,
+  :locked => true,
   :name => 'template',
   :image => File.open( "#{Rails.root}/app/assets/images/template.png" )
 )
 p 'Created template Artwork'
+rocket = Artwork.create!(
+  :locked => false,
+  :name => 'rocket',
+  :artist => "NASA",
+  :attribution => 'http://commons.wikimedia.org/wiki/File:S81-30459.jpg',
+  :image => File.open( "#{Rails.root}/app/assets/images/rocket.jpg" )
+  )
+p "Created rocket Artwork"
 d = Design.create!(
   :name => "liftoff",
   :designer => "leggers"
 )
 t = Transform.create!(
-  :image_x => 330,
-  :image_y => 1000,
-  :width => 5425,
-  :height => 11275,
-  :leg => "left",
-  :mirror => true,
-  :artwork => rocket,
-  :design => d
+  transform_defaults.merge!({
+    :leg => "left",
+    :mirror => true,
+    :artwork => rocket,
+    :design => d
+  })
 )
 p 'Created Design entry, time to make image'
 d.fabricate!
-p 'Design fabricated'
+p 'Rocket Design fabricated'
+
+bb = Artwork.create!(
+  :locked => false,
+  :name => 'agrias narcissus',
+  :attribution => 'http://commons.wikimedia.org/wiki/File:Agrias_narcissus_narcissus_MHNT.jpg',
+  :artist => 'Didier Descouens',
+  :image => File.open( "#{Rails.root}/app/assets/images/butterfly_blue.jpg" )
+)
+p 'Blue butterfly Artwork created'
+bz = Artwork.create!(
+  :name => 'baeotus aeilus',
+  :locked => false,
+  :attribution => 'http://commons.wikimedia.org/wiki/File:Baeotus_aeilus_MHNT.jpg',
+  :artist => 'Didier Descouens',
+  :image => File.open( "#{Rails.root}/app/assets/images/butterfly_zebra.jpg" )
+)
+p 'Zebra butterfly Artwork created'
+d2 = Design.create!(
+  :name => "butterflies",
+  :designer => "leggers"
+)
+t2 = Transform.create!(
+  transform_defaults.merge!({
+    :leg => "left",
+    :mirror => false,
+    :artwork => bb,
+    :design => d2,
+    :rotation => 90
+  })
+)
+t3 = Transform.create!(
+  transform_defaults.merge!({
+    :leg => "right",
+    :mirror => false,
+    :artwork => bz,
+    :design => d2,
+    :rotation => 270
+  })
+)
+p 'Fabricating butterflies Design'
+d2.fabricate!

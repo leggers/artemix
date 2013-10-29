@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20131029180949) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "artist"
+    t.string   "attribution"
   end
 
   create_table "designs", force: true do |t|
