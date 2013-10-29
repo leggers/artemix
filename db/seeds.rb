@@ -12,18 +12,26 @@ rocket = Artwork.create!(
   :image => File.open( "#{Rails.root}/app/assets/images/rocket.jpg" )
   )
 p "Created rocket Artwork"
-Artwork.create!(
+template = Artwork.create!(
   :locked => false,
   :name => 'template',
   :image => File.open( "#{Rails.root}/app/assets/images/template.png" )
 )
 p 'Created template Artwork'
-Transform.create!(
+d = Design.create!(
+  :name => "liftoff",
+  :designer => "leggers"
+)
+t = Transform.create!(
   :image_x => 330,
   :image_y => 1000,
   :width => 5425,
   :height => 11275,
   :leg => "left",
   :mirror => true,
-  :artwork => rocket
+  :artwork => rocket,
+  :design => d
 )
+p 'Created Design entry, time to make image'
+d.fabricate!
+p 'Design fabricated'

@@ -9,13 +9,16 @@ class Transform < ActiveRecord::Base
   ]
 
   belongs_to :artwork
+  belongs_to :design
 
   validates :artwork, :presence => true
 
   # For MVP, this method moves, resizes, composites, and mirrors. Nothing else
-  def apply
+  # Input: a Magick::Image as an argument
+  # Output: a Magick::Image that represents the composite of the inputted image on top of the transformed image
+  # Imagine glueing transform's artwork onto the passed-in image.
+  def apply(template_image)
     image = Magick::ImageList.new(artwork.image.path)
-    template = Magick::ImageList.new(Artwork.find_by_name('template').image.path)
 
     # image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(width, height)
@@ -32,16 +35,9 @@ class Transform < ActiveRecord::Base
     #   end
     # end
 
-    design_image = template[0].composite(image, image_x, image_y, Magick::DstOverCompositeOp)
+    design_image = template_image.composite(image, image_x, image_y, Magick::DstOverCompositeOp)
 
     if mirror
-      # if leg == "left"
-      #   image_x = template[0].columns - image_x - width
-      # else
-      #   image_x = image_x - 5965 # TODO: do this right
-      # end
-      # image[0].flop!
-      # design_image.composite!(image, image_x, image_y, Magick::DstOverCompositeOp)
       design_image.flop!
       design_image.composite!(image, image_x, image_y, Magick::DstOverCompositeOp)
       design_image.flop!
@@ -54,7 +50,10 @@ class Transform < ActiveRecord::Base
 
     # design_name # NEEDS TO RETURN PATH
 
-    design_image
+    design_image.write("#{design_image.filename}.png")
+    # delete the temporary images created, rescues for garbage-collected files
+    File.delete(template_image.filename) rescue ""
+    Magick::ImageList.new("#{design_image.filename}")[0]
   end
 
 end
