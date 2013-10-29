@@ -3,11 +3,12 @@ class Artwork < ActiveRecord::Base
 
   # attr_accessor :name, :locked # need to add default value to locked
 
-  validates :name, :presence => true
+  validates_presence_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
   validates_inclusion_of :locked, :in => [true, false]
 
-  validates_attachment :image, :presence => true,
-    :content_type => { 
-      :content_type => 'image/jpeg'
-    }
+  validates_attachment_presence :image
+  validates_attachment_content_type :image, :content_type => /image\/(jpg|jpeg|png|gif)/
+
+  has_many :transforms
 end

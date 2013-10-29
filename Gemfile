@@ -50,12 +50,16 @@ gem 'haml'
 
 gem 'paperclip'
 
-gem 'rspec'
-
-gem 'rspec-mocks'
-
 group :test, :development do
   gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-mocks'
+  gem 'rr'
 end
 
-gem 'rr'
+gem 'foreigner'
+
+gem 'rmagick'
+
+gem 'delayed_job'
+gem 'delayed_job_active_record'
