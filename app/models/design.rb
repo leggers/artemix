@@ -1,6 +1,10 @@
 class Design < ActiveRecord::Base
   has_attached_file :image
 
+  validates_presence_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
+  validates_presence_of :designer
+
   has_many :transforms
   has_many :artworks, :through => :transforms
 
