@@ -27,10 +27,12 @@ class ArtworksController < ApplicationController
     @leg = params.delete(:leg)
     @artwork = Artwork.new(artwork_params)
 
-    if @artwork.save
-      render 'create'
-    else
-      render 'error'
+    respond_to do |format|
+      if @artwork.save
+        format.js {render 'success'}
+      else
+        format.js {render 'error'}
+      end
     end
   end
 
