@@ -27,15 +27,10 @@ class ArtworksController < ApplicationController
     @leg = params.delete(:leg)
     @artwork = Artwork.new(artwork_params)
 
-    respond_to do |format|
-      if @artwork.save
-        format.js { render 'create' }
-        # format.html { redirect_to @artwork, notice: 'Artwork was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @artwork }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @artwork.errors, status: :unprocessable_entity }
-      end
+    if @artwork.save
+      render 'create'
+    else
+      render 'error'
     end
   end
 
