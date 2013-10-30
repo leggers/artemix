@@ -1,4 +1,4 @@
-<%= form_for(@artwork, :url => artworks_path, :html => { :multipart => true }) do |f| %>
+<%= form_for(@artwork, :url => artworks_path, :html => { :multipart => true, :remote => true }) do |f| %>
   <% if @artwork.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
@@ -23,6 +23,11 @@
     <%= f.label :locked %><br>
     <%= f.check_box :locked %>
   </div>
+  <div class="field">
+    <%= f.label :leg %><br>
+    <%= select_tag(:leg, options_for_select(["Left", "left"], ["Right", 'right'], ["Both (mirrored)"]) %>
+  </div>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <div class="actions">
     <%= f.submit %>
   </div>

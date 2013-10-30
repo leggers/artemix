@@ -1,7 +1,12 @@
 Artemix::Application.routes.draw do
+  get "transform/create"
+  get "transform/update"
+  get "transform/edit"
+  get "designs/new"
+  get "designs/create"
   resources :artworks
 
-  root 'artworks#index'
+  root 'designs#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
