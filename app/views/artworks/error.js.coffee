@@ -1,1 +1,1 @@
-window.alert('error! error! <%= @artwork.errors.inspect %>')
+window.alert('err0r! err0r!')

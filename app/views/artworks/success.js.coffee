@@ -10,3 +10,5 @@ img.onload = ->
     context.drawImage(img, 0, 0, width, height)
 
 img.src = "<%= @artwork.image.url %>"
+
+window.images["<%= @leg %>"] = img
