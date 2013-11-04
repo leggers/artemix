@@ -4,8 +4,8 @@
 
 $p: absolute;
 $t: 350px;
-$ll: 0px;
-$rl: 550px;
+$ll: 30px;
+$rl: 400px;
 
 #left_cover {
     position: $p;
@@ -22,11 +22,11 @@ $rl: 550px;
 #right_cover {
     position: $p;
     top: $t;
-    left: $rl;
+    left: $rl + $ll;
 }
 
 #right_leg {
     position: $p;
     top: $t;
-    left: $rl;
+    left: $rl + $ll;
 }

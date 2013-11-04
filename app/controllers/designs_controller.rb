@@ -2,6 +2,8 @@ class DesignsController < ApplicationController
   def new
     @artwork = Artwork.new
     @design = Design.new
+    @left_transform = Transform.new
+    @right_transform = Transform.new
   end
 
   def create

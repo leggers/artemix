@@ -2,4 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# _left_leg = $('#left_leg')[0].getContext('2d')
+$ ->
+    $('#right_cover').on('mousedown', )
+    $('#right_cover').on('mousemove', )
+    $('#right_cover').on('mouseup', )
+
+    $('#left_cover').on('mousedown', )
+    $('#left_cover').on('mousemove', )
+    $('#left_cover').on('mouseup', )
