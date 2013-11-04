@@ -1,0 +1,18 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+image = {
+    
+}
+
+$ ->
+    context = $("#right_cover")[0].getContext('2d')
+    console.log(context)
+    img = new Image()
+
+    img.onload = ->
+        context.drawImage(img, 0, 0, 250, 500)
+
+    img.src = "<%= asset_path 'right_leg.png' %>"
+    console.log(img)

@@ -2,7 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-canvas {
-    width: 500px;
-    height: 1000px;
+$p: absolute;
+$t: 350px;
+$ll: 0px;
+$rl: 550px;
+
+#left_cover {
+    position: $p;
+    top: $t;
+    left: $ll;
+}
+
+#left_leg {
+    position: $p;
+    top: $t;
+    left: $ll;
+}
+
+#right_cover {
+    position: $p;
+    top: $t;
+    left: $rl;
+}
+
+#right_leg {
+    position: $p;
+    top: $t;
+    left: $rl;
 }
