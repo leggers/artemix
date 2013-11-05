@@ -16,21 +16,22 @@ $ ->
     l_context = $('#left_leg')[0].getContext('2d')
 
     bind_listeners = ->
-        $('#right_cover').on('mousedown', right_down)
-        $('#right_cover').on('mousemove', right_move)
-        $('#right_cover').on('mouseup', right_up)
+        $('#right_cover').mousedown(right_down)
+        $('#right_cover').mousemove(right_move)
+        $('#right_cover').mouseup(right_up)
 
-        $('#left_cover').on('mousedown', left_down)
-        $('#left_cover').on('mousemove', left_move)
-        $('#left_cover').on('mouseup', left_up)
+        $('#left_cover').mousedown(left_down)
+        $('#left_cover').mousemove(left_move)
+        $('#left_cover').mouseup(left_up)
 
-        # $('#mirror').on('click', mirror_image)
+        $('#mirror').change(mirror_image)
 
     mouse_up = () ->
         mouse_x = 0
         mouse_y = 0
 
     right_down = ->
+        console.log('rdown')
         r_down = true
 
     right_up = ->
@@ -96,10 +97,10 @@ $ ->
 
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
-    bind_listeners()
-
     mirror_image = ->
         console.log(this)
+
+    bind_listeners()
 
     window.add_leg = (leg, source) ->
         # remove option from dropdown
