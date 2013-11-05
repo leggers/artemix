@@ -15,14 +15,15 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
-    bind_listeners = ->
-        $('#right_cover').on('mousedown', right_down)
-        $('#right_cover').on('mousemove', right_move)
-        $('#right_cover').on('mouseup', right_up)
+    $('#right_cover').on('mousedown', right_down)
+    $('#right_cover').on('mousemove', right_move)
+    $('#right_cover').on('mouseup', right_up)
 
-        $('#left_cover').on('mousedown', left_down)
-        $('#left_cover').on('mousemove', left_move)
-        $('#left_cover').on('mouseup', left_up)
+    $('#left_cover').on('mousedown', left_down)
+    $('#left_cover').on('mousemove', left_move)
+    $('#left_cover').on('mouseup', left_up)
+
+    $('#mirror').on('click', mirror_image)
 
     mouse_up = () ->
         mouse_x = 0
@@ -94,7 +95,7 @@ $ ->
 
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
-    bind_listeners()
+    mirror_image = ->
 
     window.add_leg = (leg, source) ->
         # remove option from dropdown
