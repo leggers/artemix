@@ -94,5 +94,22 @@ $ ->
 
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
-
     bind_listeners()
+
+
+    window.add_leg = (leg, source) ->
+        canvas = $("##{leg}_leg")[0]
+        width = canvas.width
+        height = canvas.height
+
+        context = canvas.getContext('2d')
+        img = new Image()
+
+        img.onload = ->
+            context.drawImage(img, 0, 0, width, height)
+
+        img.src = source
+        window.images[leg] = img
+
+
+        
