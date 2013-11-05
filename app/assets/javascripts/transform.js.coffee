@@ -96,8 +96,14 @@ $ ->
 
     bind_listeners()
 
-
     window.add_leg = (leg, source) ->
+        # remove option from dropdown
+        $("#leg option[value='#{leg}']").remove()
+
+        # clear artwork name text box
+        $('#artwork_name').val('')
+
+        # add image to canvas
         canvas = $("##{leg}_leg")[0]
         width = canvas.width
         height = canvas.height
@@ -110,6 +116,5 @@ $ ->
 
         img.src = source
         window.images[leg] = img
-
 
         

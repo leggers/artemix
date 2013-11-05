@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :leg %><br>
-    <%= select_tag(:leg, options_for_select([["Left", "left"], ["Right", 'right'], ["Both (mirrored)", 'both']]) ) %>
+    <%= select_tag(:leg, options_for_select([["Left", "left"], ["Right", 'right']]) ) %>
   </div>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <div class="actions">
