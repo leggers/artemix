@@ -11,4 +11,7 @@ img.onload = ->
 
 img.src = "<%= @artwork.image.url %>"
 
+<% if @leg == 'both' %>
+<% else %>
 window.images["<%= @leg %>"] = img
+<% end %>
