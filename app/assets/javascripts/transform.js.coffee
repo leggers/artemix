@@ -112,7 +112,7 @@ $ ->
         img = new Image()
 
         img.onload = ->
-            context.drawImage(img, 0, 0, width, height)
+            context.drawImage(img, 5, 5, width - 10, height - 10)
 
         img.src = source
         window.images[leg] = img
