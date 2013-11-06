@@ -4,6 +4,7 @@
 
 $ ->
     window.images = {}
+    window.ids = {}
     r_down = false
     l_down = false
     mouse_x = 0

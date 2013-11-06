@@ -1,9 +1,11 @@
 Artemix::Application.routes.draw do
-  get "transform/create"
+  post "transform/create"
   get "transform/update"
   get "transform/edit"
-  get "designs/new"
-  get "designs/create"
+  resources :designs do
+    get 'new'
+    post 'create'
+  end
   resources :artworks
 
   root 'designs#new'

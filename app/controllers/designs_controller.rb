@@ -8,6 +8,13 @@ class DesignsController < ApplicationController
 
   def create
     @design = Design.new(design_params)
+    respond_to do |format|
+      if @design.save
+        format.js {render 'created'}
+      else
+        format.js {render 'error'}
+      end
+    end
   end
 
   private
