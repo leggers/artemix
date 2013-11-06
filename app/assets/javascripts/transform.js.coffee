@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+    window.images = {}
     r_down = false
     l_down = false
     mouse_x = 0
@@ -17,17 +18,18 @@ $ ->
     l_context = $('#left_leg')[0].getContext('2d')
 
     bind_listeners = ->
-        $('#right_cover').mousedown(right_down)
-        $('#right_cover').mousemove(right_move)
-        $('#right_cover').mouseup(right_up)
+        $('#right_cover_canvas').mousedown(right_down)
+        $('#right_cover_canvas').mousemove(right_move)
+        $('#right_cover_canvas').mouseup(right_up)
 
-        $('#left_cover').mousedown(left_down)
-        $('#left_cover').mousemove(left_move)
-        $('#left_cover').mouseup(left_up)
+        $('#left_cover_canvas').mousedown(left_down)
+        $('#left_cover_canvas').mousemove(left_move)
+        $('#left_cover_canvas').mouseup(left_up)
 
         $('#mirror').change(mirror_image)
 
     mouse_up = () ->
+        console.log('up')
         mouse_x = 0
         mouse_y = 0
 
@@ -39,6 +41,7 @@ $ ->
         mouse_up()
 
     left_down = ->
+        console.log('down')
         l_down = true
 
     left_up = ->
@@ -79,10 +82,10 @@ $ ->
         diffs
 
     draw_right_image = ->
+        r_context.clearRect(0, 0, c_width, c_height)
         r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
 
     move_right_image = (diffs) ->
-        r_context.clearRect(0, 0, c_width, c_height)
         r_image.origin.x -= diffs[0]
         r_image.origin.y -= diffs[1]
         draw_right_image()
@@ -95,10 +98,10 @@ $ ->
                 move_left_image(diffs)
 
     draw_left_image = ->
+        l_context.clearRect(0, 0, c_width, c_height)
         l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
     move_left_image = (diffs) ->
-        l_context.clearRect(0, 0, c_width, c_height)
         l_image.origin.x -= diffs[0]
         l_image.origin.y -= diffs[1]
         draw_left_image()
@@ -141,7 +144,7 @@ $ ->
     window.add_leg = (leg, source) ->
         # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
-        $('#mirror_option').show()
+        # $('#mirror_option').show()
 
         # clear artwork name text box
         $('#artwork_name').val('')

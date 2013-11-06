@@ -30,3 +30,15 @@ $rl: 400px;
     top: $t;
     left: $rl + $ll;
 }
+
+#right_cover_canvas {
+    position: $p;
+    top: $t;
+    left: $rl + $ll;
+}
+
+#left_cover_canvas {
+    position: $p;
+    top: $t;
+    left: $ll;
+}

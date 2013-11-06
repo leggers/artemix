@@ -1,5 +1,12 @@
 class TransformController < ApplicationController
   def create
+    @transform = Transform.new(transform_params)
+    respond_to do |format|
+      if @transform.save
+        format.js {render 'success'}
+      else
+        format.js {render 'error'}
+    end
   end
 
   def update
