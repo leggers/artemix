@@ -3,42 +3,57 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $p: absolute;
-$t: 550px;
-$ll: 30px;
-$rl: 400px;
+$t: 0px;
+$ll: 0px;
+$rl: 100px;
+$wp: relative;
+$wh: 660px;
+$ww: 300px;
 
-#left_cover {
-    position: $p;
-    top: $t;
-    left: $ll;
+.left_wrapper {
+    position: $wp;
+    height: $wh;
+    width: $ww;
+    float: left;
+
+    #left_cover {
+        position: $p;
+        top: $t;
+        // left: $ll;
+    }
+
+    #left_leg {
+        position: $p;
+        top: $t;
+        // left: $ll;
+    }
+
+    #left_cover_canvas {
+        position: $p;
+        top: $t;
+        // left: $ll;
+    }
 }
 
-#left_leg {
-    position: $p;
-    top: $t;
-    left: $ll;
-}
 
-#right_cover {
-    position: $p;
-    top: $t;
+.right_wrapper {
+    position: $wp;
+    height: $wh;
+    width: $ww;
     left: $rl + $ll;
-}
 
-#right_leg {
-    position: $p;
-    top: $t;
-    left: $rl + $ll;
-}
+    #right_cover {
+        position: $p;
+        top: $t;
+    }
 
-#right_cover_canvas {
-    position: $p;
-    top: $t;
-    left: $rl + $ll;
-}
+    #right_leg {
+        position: $p;
+        top: $t;
+    }
 
-#left_cover_canvas {
-    position: $p;
-    top: $t;
-    left: $ll;
+    #right_cover_canvas {
+        position: $p;
+        top: $t;
+    }
 }

@@ -1,9 +1,6 @@
-<h1>Make a Design!</h1>
+<h1>Customize your legs</h1>
 
-<h2>Name your design</h2>
-<%= render :partial => 'form' %>
-
-<h2>Upload an image</h2>
+<h2>Upload images (one per leg right now)</h2>
 
 <%= render :partial => 'artworks/form' %>
 
@@ -11,12 +8,19 @@
     Mirror image: <%= check_box_tag 'mirror' %>
 </div>
 </br>
-Position the image on the leggings template.
+<h2>Position the image on the leggings template</h2>
 
-<canvas id="left_leg" wdith="300" height="660"></canvas>
-<%= image_tag "left_leg.png", :size => "300x660", :id => "left_cover" %>
-<canvas id="left_cover_canvas" wdith="300" height="660"></canvas>
+<div class='left_wrapper'>
+    <canvas id="left_leg" wdith="300" height="660"></canvas>
+    <%= image_tag "left_leg.png", :size => "300x660", :id => "left_cover" %>
+    <canvas id="left_cover_canvas" wdith="300" height="660"></canvas>
+</div>
 
-<canvas id="right_leg"wdith="300" height="660"></canvas>
-<%= image_tag "right_leg.png", :size => "300x660", :id => "right_cover" %>
-<canvas id="right_cover_canvas"wdith="300" height="660"></canvas>
+<div class='right_wrapper'>
+    <canvas id="right_leg"wdith="300" height="660"></canvas>
+    <%= image_tag "right_leg.png", :size => "300x660", :id => "right_cover" %>
+    <canvas id="right_cover_canvas"wdith="300" height="660"></canvas>
+</div>
+
+<h2>Name your design</h2>
+<%= render :partial => 'form' %>
