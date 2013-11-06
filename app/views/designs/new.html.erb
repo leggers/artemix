@@ -3,7 +3,9 @@ Start by uploading an image.
 
 <%= render :partial => 'artworks/form' %>
 
-Mirror image: <%= check_box_tag 'mirror' %>
+<div id='mirror_option' style='display: none;'>
+    Mirror image: <%= check_box_tag 'mirror' %>
+</div>
 </br>
 Position the image on the leggings template.
 

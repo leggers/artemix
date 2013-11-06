@@ -31,7 +31,6 @@ $ ->
         mouse_y = 0
 
     right_down = ->
-        console.log('rdown')
         r_down = true
 
     right_up = ->
@@ -47,20 +46,20 @@ $ ->
 
     r_image = {
         origin: {
-            x: 0,
-            y: 0
+            x: 5,
+            y: 5
         }
-        width: c_width,
-        height: c_height
+        width: c_width - 10,
+        height: c_height - 10
     }
 
     l_image = {
         origin: {
-            x: 0,
-            y: 0
+            x: 5,
+            y: 5
         }
-        width: c_width,
-        height: c_height
+        width: c_width - 10,
+        height: c_height - 10
     }
 
     get_diffs = (event) ->
@@ -98,27 +97,41 @@ $ ->
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
     mirror_image = ->
-        console.log(this)
+        left_image = window.images.left != undefined
+
+        if left_image
+            context = r_context
+            image = window.images.left
+        else
+            context = l_context
+            image = window.images.right
+
+        if $(this).is(':checked')
+            context.translate(c_width, 0)
+            context.scale(-1, 1)
+        else
+            context.translate(0, 0)
+            context.scale(-1, 1)
+
+        context.drawImage(image, 5, 5, c_width - 10, c_height - 10)
 
     bind_listeners()
 
     window.add_leg = (leg, source) ->
-        # remove option from dropdown
+        # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
+        $('#mirror_option').show()
 
         # clear artwork name text box
         $('#artwork_name').val('')
 
         # add image to canvas
         canvas = $("##{leg}_leg")[0]
-        width = canvas.width
-        height = canvas.height
-
         context = canvas.getContext('2d')
         img = new Image()
 
         img.onload = ->
-            context.drawImage(img, 5, 5, width - 10, height - 10)
+            context.drawImage(img, 5, 5, c_width - 10, c_height - 10)
 
         img.src = source
         window.images[leg] = img
