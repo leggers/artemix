@@ -7,6 +7,7 @@ $ ->
     l_down = false
     mouse_x = 0
     mouse_y = 0
+    mirrored = false
 
     rcanvas = $("#right_leg")[0]
     c_width = rcanvas.width
@@ -77,24 +78,37 @@ $ ->
 
         diffs
 
+    draw_right_image = ->
+        r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+
+    move_right_image = (diffs) ->
+        r_context.clearRect(0, 0, c_width, c_height)
+        r_image.origin.x -= diffs[0]
+        r_image.origin.y -= diffs[1]
+        draw_right_image()
+
     right_move = (event) ->
+        diffs = get_diffs(event)
         if r_down && window.images.right != undefined
-            r_context.clearRect(0, 0, c_width, c_height)
-            diffs = get_diffs(event)
-            r_image.origin.x -= diffs[0]
-            r_image.origin.y -= diffs[1]
+            move_right_image(diffs)
+            if mirrored
+                move_left_image(diffs)
 
-            r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+    draw_left_image = ->
+        l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
+    move_left_image = (diffs) ->
+        l_context.clearRect(0, 0, c_width, c_height)
+        l_image.origin.x -= diffs[0]
+        l_image.origin.y -= diffs[1]
+        draw_left_image()
 
     left_move = (event) ->
+        diffs = get_diffs(event)
         if l_down && window.images.left != undefined
-            l_context.clearRect(0, 0, c_width, c_height)
-            diffs = get_diffs(event)
-            l_image.origin.x -= diffs[0]
-            l_image.origin.y -= diffs[1]
-
-            l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
+            move_left_image(diffs)
+            if mirrored
+                move_right_image(diffs)
 
     mirror_image = ->
         left_image = window.images.left != undefined
@@ -102,18 +116,25 @@ $ ->
         if left_image
             context = r_context
             image = window.images.left
+            window.images.right = image
+            r_image = l_image
         else
             context = l_context
             image = window.images.right
+            window.images.left = image
+            l_image = r_image
 
         if $(this).is(':checked')
+            mirrored = true
             context.translate(c_width, 0)
             context.scale(-1, 1)
         else
+            mirrored = false
             context.translate(0, 0)
             context.scale(-1, 1)
 
-        context.drawImage(image, 5, 5, c_width - 10, c_height - 10)
+        draw_left_image()
+        draw_right_image()
 
     bind_listeners()
 
