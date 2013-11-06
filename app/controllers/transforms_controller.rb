@@ -1,4 +1,4 @@
-class TransformController < ApplicationController
+class TransformsController < ApplicationController
   def create
     @transform = Transform.new(transform_params)
     respond_to do |format|
@@ -6,6 +6,7 @@ class TransformController < ApplicationController
         format.js {render 'success'}
       else
         format.js {render 'error'}
+      end
     end
   end
 

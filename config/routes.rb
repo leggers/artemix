@@ -1,7 +1,7 @@
 Artemix::Application.routes.draw do
-  post "transform/create"
-  get "transform/update"
-  get "transform/edit"
+  resources :transforms do
+    post 'create'
+  end
   resources :designs do
     get 'new'
     post 'create'
