@@ -46,10 +46,13 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Better HTML document building (not used)
 gem 'haml'
 
+# File uploads
 gem 'paperclip'
 
+# Testing gems
 group :test, :development do
   gem 'rspec-rails'
   gem 'rspec'
@@ -57,11 +60,19 @@ group :test, :development do
   gem 'rr'
 end
 
+# Foreign keys in database
 gem 'foreigner'
 
+# Image manipulation
 gem 'rmagick'
 
+# For future design creation processing
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 
+# AJAX file uploads
 gem 'remotipart'
+
+# Bootstrap
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
