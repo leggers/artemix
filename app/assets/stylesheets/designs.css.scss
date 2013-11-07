@@ -5,7 +5,7 @@
 $p: absolute;
 $t: 0px;
 $ll: 0px;
-$rl: 100px;
+$rl: 0px;
 $wp: relative;
 $wh: 660px;
 $ww: 300px;
@@ -40,20 +40,23 @@ $ww: 300px;
     position: $wp;
     height: $wh;
     width: $ww;
-    left: $rl + $ll;
+    left: $ww + 100;
 
     #right_cover {
         position: $p;
         top: $t;
+        left: $rl;
     }
 
     #right_leg {
         position: $p;
         top: $t;
+        left: $rl;
     }
 
     #right_cover_canvas {
         position: $p;
         top: $t;
+        left: $rl;
     }
 }

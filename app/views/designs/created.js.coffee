@@ -1,1 +1,1 @@
-window.design_id = <%= @design.id %>
+window.design_created(<%= @design.id %>)

@@ -19,13 +19,13 @@ $ ->
     l_context = $('#left_leg')[0].getContext('2d')
 
     bind_listeners = ->
-        $('#right_cover_canvas').mousedown(right_down)
-        $('#right_cover_canvas').mousemove(right_move)
-        $('#right_cover_canvas').mouseup(right_up)
-
         $('#left_cover_canvas').mousedown(left_down)
         $('#left_cover_canvas').mousemove(left_move)
         $('#left_cover_canvas').mouseup(left_up)
+
+        $('#right_cover_canvas').mousedown(right_down)
+        $('#right_cover_canvas').mousemove(right_move)
+        $('#right_cover_canvas').mouseup(right_up)
 
         $('#mirror').change(mirror_image)
 
@@ -42,7 +42,6 @@ $ ->
         mouse_up()
 
     left_down = ->
-        console.log('down')
         l_down = true
 
     left_up = ->
@@ -161,4 +160,30 @@ $ ->
         img.src = source
         window.images[leg] = img
 
-        
+    fill_in_form = (form, data) ->
+        form.find('#transform_image_x').val(data.origin.x)
+        form.find('#transform_image_y').val(data.origin.y)
+        form.find('#transform_width').val(data.width)
+        form.find('#transform_height').val(data.height)
+        form.find('#transform_leg').val(data.leg)
+        form.find('#transform_mirror')
+        form.find('#transform_artwork_id').val(data.artwork_id)
+        form.find('#transform_design_id').val(data.design_id)
+        form.find('#transform_rotation')
+        form.submit()
+
+    window.design_created = (design_id) ->
+        if mirrored # populate one form and make sure mirror is checked there!
+            0
+        else # populate both forms
+            right = $('#right_transform')
+            r_image.leg = "right"
+            r_image.artwork_id = window.ids['right']
+            r_image.design_id = design_id
+            fill_in_form(right, r_image)
+
+            left = $('#left_transform')
+            l_image.leg = "left"
+            l_image.artwork_id = window.ids['left']
+            l_image.design_id = design_id
+            fill_in_form(left, l_image)

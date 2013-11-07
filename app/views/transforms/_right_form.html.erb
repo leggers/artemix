@@ -1,0 +1,39 @@
+<%= form_for(@right_transform, :url => transforms_path, :html => {:id => "right_transform"}, :remote => true) do |f| %>
+    <div class='field'>
+        <%= f.label :image_x %>
+        <%= f.number_field :image_x %>
+    </div>
+    <div class='field'>
+        <%= f.label :image_y %>
+        <%= f.number_field :image_y %>
+    </div>
+    <div class='field'>
+        <%= f.label :width %>
+        <%= f.number_field :width %>
+    </div>
+    <div class='field'>
+        <%= f.label :height %>
+        <%= f.number_field :height %>
+    </div>
+    <div class='field'>
+        <%= f.label :leg %>
+        <%= f.text_field :leg %>
+    </div>
+    <div class='field'>
+        <%= f.label :mirror %>
+        <%= f.check_box :mirror %>
+    </div>
+    <div class='field'>
+        <%= f.label :artwork_id %>
+        <%= f.number_field :artwork_id %>
+    </div>
+    <div class='field'>
+        <%= f.label :design_id %>
+        <%= f.number_field :design_id %>
+    </div>
+    <div class='field'>
+        <%= f.label :rotation %>
+        <%= f.number_field :rotation %>
+    </div>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<% end %>
