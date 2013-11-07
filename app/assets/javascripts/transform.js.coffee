@@ -159,7 +159,8 @@ $ ->
         $('#mirror_option').show()
         if two_images()
             $('#mirror_option').hide()
-            mirrored = false
+            $('#mirror').prop('checked', false)
+            mirror_image()
             $('#new_artwork').slideUp()
 
         # clear artwork name text box
@@ -182,24 +183,25 @@ $ ->
         form.find('#transform_width').val(data.width)
         form.find('#transform_height').val(data.height)
         form.find('#transform_leg').val(data.leg)
-        form.find('#transform_mirror')
+        form.find('#transform_mirror').prop('checked', data.mirror)
         form.find('#transform_artwork_id').val(data.artwork_id)
         form.find('#transform_design_id').val(data.design_id)
         form.find('#transform_rotation')
         form.submit()
 
     window.design_created = (design_id) ->
-        if mirrored # populate one form and make sure mirror is checked there!
-            0
-        else # populate both forms
+        if window.ids.right != undefined
             right = $('#right_transform')
             r_image.leg = "right"
             r_image.artwork_id = window.ids['right']
             r_image.design_id = design_id
+            r_image.mirror = $('#mirror').is(':checked')
             fill_in_form(right, r_image)
 
+        if window.ids.left != undefined
             left = $('#left_transform')
             l_image.leg = "left"
             l_image.artwork_id = window.ids['left']
             l_image.design_id = design_id
+            l_image.mirror = $('#mirror').is(':checked')
             fill_in_form(left, l_image)
