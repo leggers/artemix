@@ -84,31 +84,31 @@ $ ->
     draw_right_image = ->
         r_context.clearRect(0, 0, c_width, c_height)
         r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+        
+    draw_left_image = ->
+        l_context.clearRect(0, 0, c_width, c_height)
+        l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
     move_right_image = (diffs) ->
         r_image.origin.x -= diffs[0]
         r_image.origin.y -= diffs[1]
         draw_right_image()
 
-    right_move = (event) ->
-        diffs = get_diffs(event)
-        if r_down && window.images.right != undefined
-            move_right_image(diffs)
-            if mirrored
-                move_left_image(diffs)
-
-    draw_left_image = ->
-        l_context.clearRect(0, 0, c_width, c_height)
-        l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
-
     move_left_image = (diffs) ->
         l_image.origin.x -= diffs[0]
         l_image.origin.y -= diffs[1]
         draw_left_image()
 
+    right_move = (event) ->
+        if r_down && window.images.right != undefined
+            diffs = get_diffs(event)
+            move_right_image(diffs)
+            if mirrored
+                move_left_image(diffs)
+
     left_move = (event) ->
-        diffs = get_diffs(event)
         if l_down && window.images.left != undefined
+            diffs = get_diffs(event)
             move_left_image(diffs)
             if mirrored
                 move_right_image(diffs)
