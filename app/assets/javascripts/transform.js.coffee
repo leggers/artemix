@@ -84,7 +84,7 @@ $ ->
     draw_right_image = ->
         r_context.clearRect(0, 0, c_width, c_height)
         r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
-        
+
     draw_left_image = ->
         l_context.clearRect(0, 0, c_width, c_height)
         l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
@@ -102,6 +102,8 @@ $ ->
     right_move = (event) ->
         if r_down && window.images.right != undefined
             diffs = get_diffs(event)
+            if mirrored
+                diffs[0] = -diffs[0] if window.ids.right == undefined
             move_right_image(diffs)
             if mirrored
                 move_left_image(diffs)
@@ -109,9 +111,13 @@ $ ->
     left_move = (event) ->
         if l_down && window.images.left != undefined
             diffs = get_diffs(event)
+            if mirrored
+                diffs[0] = -diffs[0] if window.ids.left == undefined
             move_left_image(diffs)
             if mirrored
                 move_right_image(diffs)
+
+
 
     mirror_image = ->
         left_image = window.images.left != undefined
@@ -120,12 +126,12 @@ $ ->
             context = r_context
             image = window.images.left
             window.images.right = image
-            r_image = l_image
+            r_image = $.extend(true, {}, l_image)
         else
             context = l_context
             image = window.images.right
             window.images.left = image
-            l_image = r_image
+            l_image = $.extend(true, {}, r_image)
 
         if $(this).is(':checked')
             mirrored = true
@@ -144,7 +150,7 @@ $ ->
     window.add_leg = (leg, source) ->
         # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
-        # $('#mirror_option').show()
+        $('#mirror_option').show()
 
         # clear artwork name text box
         $('#artwork_name').val('')
