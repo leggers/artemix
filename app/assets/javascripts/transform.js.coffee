@@ -83,11 +83,13 @@ $ ->
 
     draw_right_image = ->
         r_context.clearRect(0, 0, c_width, c_height)
-        r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+        if window.images.right != undefined
+            r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
 
     draw_left_image = ->
         l_context.clearRect(0, 0, c_width, c_height)
-        l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
+        if window.images.left != undefined
+            l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
 
     move_right_image = (diffs) ->
         r_image.origin.x -= diffs[0]
@@ -120,7 +122,7 @@ $ ->
 
 
     mirror_image = ->
-        left_image = window.images.left != undefined
+        left_image = window.ids.left != undefined
 
         if left_image
             context = r_context
@@ -139,18 +141,27 @@ $ ->
             context.scale(-1, 1)
         else
             mirrored = false
-            context.translate(0, 0)
+            if left_image
+                window.images.right = undefined
+            else
+                window.images.left = undefined
+            context.clearRect(0, 0, c_width, c_height)
             context.scale(-1, 1)
+            context.translate(-c_width, 0)
 
         draw_left_image()
         draw_right_image()
 
     bind_listeners()
 
+    two_images = ->
+        window.ids.left != undefined && window.ids.right != undefined
+
     window.add_leg = (leg, source) ->
         # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
         $('#mirror_option').show()
+        $('#mirror_option').hide() if two_images()
 
         # clear artwork name text box
         $('#artwork_name').val('')
