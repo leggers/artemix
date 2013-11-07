@@ -52,10 +52,10 @@ describe Transform do
     it 'should change values when scaled' do
       t = Transform.new(valid_attributes)
       t.scale
-      t.image_x = valid_attributes(:image_x) * 20
-      t.image_y = valid_attributes(:image_y) * 20
-      t.height = valid_attributes(:height) * 20
-      t.width = valid_attributes(:width) * 20
+      t.image_x = valid_attributes[:image_x] * 20
+      t.image_y = valid_attributes[:image_y] * 20
+      t.height = valid_attributes[:height] * 20
+      t.width = valid_attributes[:width] * 20
     end
   end
 end
