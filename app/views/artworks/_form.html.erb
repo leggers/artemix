@@ -15,9 +15,17 @@
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :name, "Image Name (NOT design name)" %><br>
     <%= f.text_field :name %>
+  </div> -->
+  <div class='field'>
+    <%= f.label :artist, "Who made this artwork?" %>
+    <%= f.text_field :artist %>
+  </div>
+  <div class='field'>
+    <%= f.label :attribution, "Where can we find them?" %>
+    <%= f.text_field :attribution %>
   </div>
   <div class="field">
     <%= f.label :locked, "Do NOT allow others to use this image (only possible if you own the copyright)" %><br>
