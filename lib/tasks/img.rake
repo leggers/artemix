@@ -1,5 +1,5 @@
 namespace :img do
-  desc "TODO"
+  desc "Takes a template file and converts it into the two template images seen on the site"
   task covers: :environment do
     directory = "#{Rails.root}/app/assets/images"
     template = Magick::ImageList.new("#{directory}/template.png")

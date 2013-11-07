@@ -21,6 +21,6 @@ class Design < ActiveRecord::Base
     self.image = File.open(img.filename)
     save!
 
-    files.each {|f| File.delete(f)}
+    files.each {|f| File.delete(f) if File.exists?(f)}
   end
 end
