@@ -13,6 +13,17 @@ class Transform < ActiveRecord::Base
 
   validates :artwork, :presence => true
 
+  # takes pixel counts from the website and scales them to actual 300dpi template size
+  def scale
+    scale_factor = 20 # template.png height divided by canvas height
+    self.image_x = self.image_x.to_i.abs * scale_factor
+    self.image_y = self.image_y.to_i.abs * scale_factor
+    self.height = self.height.to_i.abs * scale_factor
+    self.width = self.width.to_i.abs * scale_factor
+    self.artwork_id = self.artwork_id.to_i
+    self.design_id = self.design_id.to_i
+  end
+
   # For MVP, this method moves, resizes, composites, and mirrors. Nothing else
   # Input: a Magick::ImageList
   # Output: a Magick::ImageList that represents the composite of the inputted image on top of the transformed image

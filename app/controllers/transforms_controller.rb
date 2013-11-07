@@ -1,13 +1,7 @@
 class TransformsController < ApplicationController
   def create
-    params = transform_params
-    scale_factor = 20 # template.png height divided by canvas height
-    to_scale = [:image_x, :image_y, :height, :width]
-    to_scale.each { |k| params[k] = params[k].to_i.abs * scale_factor }
-    params[:artwork_id] = params[:artwork_id].to_i
-    params[:design_id] = params[:design_id].to_i
-    puts params.inspect
-    @transform = Transform.new(params)
+    @transform = Transform.new(transform_params)
+    @transform.scale
     respond_to do |format|
       if @transform.save
         format.js {render 'success'}

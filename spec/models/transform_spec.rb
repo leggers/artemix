@@ -7,10 +7,10 @@ describe Transform do
     :image => fixture_file_upload('fourmoons.jpg', 'image/jpeg')
   } }
   let(:valid_attributes) { {
-    :image_x => 0,
-    :image_y => 0,
-    :height => 0,
-    :width => 0,
+    :image_x => 1,
+    :image_y => 1,
+    :height => 1,
+    :width => 1,
     :artwork => @artwork,
     :leg => "left"
   } } 
@@ -46,6 +46,16 @@ describe Transform do
     it 'should not save without a leg specified' do
       valid_attributes.delete(:leg)
       expect{ Transform.create!(valid_attributes) }.to raise_error
+    end
+  end
+  describe 'scaling' do
+    it 'should change values when scaled' do
+      t = Transform.new(valid_attributes)
+      t.scale
+      t.image_x = valid_attributes(:image_x) * 20
+      t.image_y = valid_attributes(:image_y) * 20
+      t.height = valid_attributes(:height) * 20
+      t.width = valid_attributes(:width) * 20
     end
   end
 end
