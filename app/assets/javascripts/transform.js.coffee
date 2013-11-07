@@ -106,20 +106,16 @@ $ ->
             diffs = get_diffs(event)
             if mirrored
                 diffs[0] = -diffs[0] if window.ids.right == undefined
-            move_right_image(diffs)
-            if mirrored
                 move_left_image(diffs)
+            move_right_image(diffs)
 
     left_move = (event) ->
         if l_down && window.images.left != undefined
             diffs = get_diffs(event)
             if mirrored
                 diffs[0] = -diffs[0] if window.ids.left == undefined
-            move_left_image(diffs)
-            if mirrored
                 move_right_image(diffs)
-
-
+            move_left_image(diffs)
 
     mirror_image = ->
         left_image = window.ids.left != undefined
@@ -161,7 +157,10 @@ $ ->
         # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
         $('#mirror_option').show()
-        $('#mirror_option').hide() if two_images()
+        if two_images()
+            $('#mirror_option').hide()
+            mirrored = false
+            $('#new_artwork').slideUp()
 
         # clear artwork name text box
         $('#artwork_name').val('')
