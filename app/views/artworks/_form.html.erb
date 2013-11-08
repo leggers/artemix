@@ -1,5 +1,5 @@
 <%= form_for(@artwork, :url => artworks_path, :html => { :multipart => true}, :remote => true) do |f| %>
-  <h2>Upload images (one per leg right now)</h2>
+  <h2>Upload images (one per leg)</h2>
   <% if @artwork.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
