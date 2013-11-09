@@ -20,6 +20,7 @@ class Design < ActiveRecord::Base
     end
 
     # put text on waistband
+    # TODO: compensate for name length by shrinking and repositioning text
     left_leg_angle = 12.3 # degrees
     left_text = Magick::Draw.new
     left_text.rotate(left_leg_angle)
