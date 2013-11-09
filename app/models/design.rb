@@ -20,8 +20,19 @@ class Design < ActiveRecord::Base
     end
 
     # put text on waistband
-    right_leg_angle = 12.3 # degrees
-    left_leg_angle = -right_leg_angle
+    left_leg_angle = 12.3 # degrees
+    left_text = Magick::Draw.new
+    left_text.rotate(left_leg_angle)
+    left_text.font_family = 'helvetica'
+    left_text.font_weight(700)
+    left_text.pointsize = 300
+    left_text.fill = 'white'
+    left_text.text(2700, 565, self.name_string)
+    left_text.draw(img)
+
+    right_leg_angle = -left_leg_angle
+    right_text = Magick::Draw.new
+    right_text.font_family = 'sans serif'
 
 
     self.image = File.open(img.filename)

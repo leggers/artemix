@@ -56,7 +56,7 @@ class Transform < ActiveRecord::Base
       design_image.flop!
     end
 
-    intermediate_location = "#{Dir.tmpdir}#{self.artwork.name}-tmp.png"
+    intermediate_location = "#{Dir.tmpdir}/#{SecureRandom.hex}.png"
     design_image.write(intermediate_location)
     intermediate_location
   end
