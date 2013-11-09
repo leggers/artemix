@@ -32,7 +32,13 @@ class Design < ActiveRecord::Base
 
     right_leg_angle = -left_leg_angle
     right_text = Magick::Draw.new
-    right_text.font_family = 'sans serif'
+    right_text.rotate(right_leg_angle)
+    right_text.font_family = 'helvetica'
+    right_text.pointsize = 150
+    right_text.fill = 'white'
+    right_text.text(6850, 3000, self.artist_string)
+    right_text.text(6850, 3160, self.desginer_string)
+    right_text.draw(img)
 
 
     self.image = File.open(img.filename)
