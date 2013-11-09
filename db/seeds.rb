@@ -46,6 +46,7 @@ p 'Rocket Design fabricated'
 bb = Artwork.create!(
   :locked => false,
   :name => 'agrias narcissus',
+  :artist => 'tester1',
   :attribution => 'http://commons.wikimedia.org/wiki/File:Agrias_narcissus_narcissus_MHNT.jpg',
   :artist => 'Didier Descouens',
   :image => File.open( "#{Rails.root}/app/assets/images/butterfly_blue.jpg" )
@@ -53,6 +54,7 @@ bb = Artwork.create!(
 p 'Blue butterfly Artwork created'
 bz = Artwork.create!(
   :name => 'baeotus aeilus',
+  :artist => 'tester2',
   :locked => false,
   :attribution => 'http://commons.wikimedia.org/wiki/File:Baeotus_aeilus_MHNT.jpg',
   :artist => 'Didier Descouens',

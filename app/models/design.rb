@@ -27,7 +27,7 @@ class Design < ActiveRecord::Base
     left_text.font_weight(700)
     left_text.pointsize = 300
     left_text.fill = 'white'
-    left_text.text(2700, 565, self.name_string)
+    left_text.text(3000, 565, self.name_string)
     left_text.draw(img)
 
     right_leg_angle = -left_leg_angle
@@ -40,8 +40,10 @@ class Design < ActiveRecord::Base
     right_text.text(6850, 3160, self.desginer_string)
     right_text.draw(img)
 
+    last_intermediate = "#{Dir.tmpdir}/#{SecureRandom.hex}.png"
+    img.write(last_intermediate)
 
-    self.image = File.open(img.filename)
+    self.image = File.open(last_intermediate)
     save!
 
     files.each {|f| File.delete(f) if File.exists?(f)}
