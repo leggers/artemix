@@ -55,7 +55,7 @@ class Design < ActiveRecord::Base
 
     offset_coefficient = text.length - 11
     if offset_coefficient > 0
-      text_x -= self.max_x_offset(offset_coefficient) * 75
+      text_x -= self.left_x_multiplier(offset_coefficient) * 75
       text_y -= offset_coefficient * 1.5
       if offset_coefficient > 2
         pointsize -= offset_coefficient * 9
@@ -87,7 +87,7 @@ class Design < ActiveRecord::Base
     img
   end
 
-  def max_x_offset offset_coefficient
+  def left_x_multiplier offset_coefficient
     offset_coefficient >= 5 ? 5 : offset_coefficient
   end
 
