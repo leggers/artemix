@@ -69,14 +69,20 @@ class Design < ActiveRecord::Base
   end
 
   def write_right_waistband_text img
-    right_leg_angle = -left_leg_angle
+    artist_text = self.artist_string
+    right_leg_angle = -12.3
     text_writer = Magick::Draw.new
     text_writer.rotate(right_leg_angle)
     text_writer.font_family = 'helvetica'
     text_writer.pointsize = 150
     text_writer.fill = 'white'
-    text_writer.text(6850, 3000, self.artist_string)
-    text_writer.text(6850, 3160, self.desginer_string)
+
+    text_x = 6850
+    text_y = 3000
+
+
+    text_writer.text(text_x, text_y, artist_text)
+    text_writer.text(text_x, text_y + 160, self.desginer_string)
     text_writer.draw(img)
     img
   end
