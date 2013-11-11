@@ -20,7 +20,7 @@ class Design < ActiveRecord::Base
     end
 
     img = self.write_waistband_text(img)
-    last_intermediate = "#{Dir.tmpdir}/#{SecureRandom.hex}.png"
+    last_intermediate = "#{Dir.tmpdir}/#{self.name}.png"
     img.write(last_intermediate)
 
     files << last_intermediate
