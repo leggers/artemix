@@ -38,12 +38,14 @@ $ ->
         texture.needsUpdate = true
     )
 
-    model_loader = new THREE.JSONLoader(loading_manager)
-    model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
-        mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
-        mesh.position.set(0, 0, 0)
-        scene.add(mesh)
+    # model_loader = new THREE.JSONLoader(loading_manager)
+    # model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
+    #     mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
+    #     mesh.position.set(0, 0, 0)
+    #     scene.add(mesh)
 
-    )
+    # )
+
+    
 
     renderer.render(scene, camera)

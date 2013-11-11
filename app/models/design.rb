@@ -43,6 +43,7 @@ class Design < ActiveRecord::Base
 
     last_intermediate = "#{Dir.tmpdir}/#{SecureRandom.hex}.png"
     img.write(last_intermediate)
+    files << last_intermediate
 
     self.image = File.open(last_intermediate)
     save!
