@@ -160,7 +160,7 @@ $ ->
         if two_images()
             $('#mirror_option').hide()
             $('#mirror').prop('checked', false)
-            mirror_image()
+            mirror_image() if mirrored
             $('#new_artwork').slideUp()
 
         # clear artwork name text box
