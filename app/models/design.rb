@@ -34,7 +34,7 @@ class Design < ActiveRecord::Base
   # private
 
   def write_waistband_text img
-    # TODO: compensate for name length by shrinking and repositioning text
+    # TODO: make text resizing work better for larger names
     img = write_left_waistband_text img
     img = write_right_waistband_text img
     img
@@ -74,21 +74,31 @@ class Design < ActiveRecord::Base
     text_writer = Magick::Draw.new
     text_writer.rotate(right_leg_angle)
     text_writer.font_family = 'helvetica'
-    text_writer.pointsize = 150
     text_writer.fill = 'white'
 
     text_x = 6850
     text_y = 3000
+    pointsize = 150
 
+    offset_coefficient = artist_text.length - 32
+    if offset_coefficient > 0
+      text_x -= self.right_x_multiplier(offset_coefficient) * 40
+      pointsize -= offset_coefficient * 2.5
+    end
 
+    text_writer.pointsize = pointsize
     text_writer.text(text_x, text_y, artist_text)
-    text_writer.text(text_x, text_y + 160, self.desginer_string)
+    text_writer.text(text_x, text_y + pointsize + 10, self.desginer_string)
     text_writer.draw(img)
     img
   end
 
   def left_x_multiplier offset_coefficient
     offset_coefficient >= 5 ? 5 : offset_coefficient
+  end
+
+  def right_x_multiplier offset_coefficient
+    offset_coefficient >= 8 ? 8 : offset_coefficient
   end
 
   def artist_string
