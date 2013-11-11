@@ -1,0 +1,49 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+
+    MODEL_VIEW_WIDTH = 400
+    MODEL_VIEW_HEIGHT = 500
+    VIEW_ANGLE = 45
+    ASPECT_RATIO = MODEL_VIEW_WIDTH / MODEL_VIEW_HEIGHT
+    NEAR_DIST = 0.1
+    FAR_DIST = 1000
+    RADIUS = 300
+    LOCATION_ANGLE = 0
+
+    $model = $('.model') # 3d canvas
+    renderer = new THREE.WebGLRenderer()
+    camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT_RATIO, NEAR_DIST, FAR_DIST )
+    scene = new THREE.Scene()
+
+    scene.add(camera)
+    camera.position.x = RADIUS * Math.sin(LOCATION_ANGLE)
+    camera.position.y = 0
+    camera.position.z = RADIUS * Math.cos(LOCATION_ANGLE)
+    renderer.setSize(MODEL_VIEW_WIDTH, MODEL_VIEW_HEIGHT)
+    $model.append(renderer.domElement)
+    scene.add(new THREE.AmbientLight(0xbbbbbb))
+
+    loading_manager = new THREE.LoadingManager()
+    loading_manager.onProgress = (item, loaded, total) ->
+        console.log(item, loaded, total)
+
+    texture = new THREE.Texture()
+
+    image_loader = new THREE.ImageLoader(loading_manager)
+    image_loader.load( "<%= asset_path 'rocket.jpg' %>", (image) ->
+        texture.image = image
+        texture.needsUpdate = true
+    )
+
+    model_loader = new THREE.JSONLoader(loading_manager)
+    model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
+        mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
+        mesh.position.set(0, 0, 0)
+        scene.add(mesh)
+
+    )
+
+    renderer.render(scene, camera)

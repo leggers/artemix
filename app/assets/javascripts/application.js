@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require three.min
+//= require OBJLoader
 //= require_tree .
