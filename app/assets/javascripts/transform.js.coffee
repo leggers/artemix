@@ -50,20 +50,20 @@ $ ->
 
     r_image = {
         origin: {
-            x: 5,
-            y: 5
-        }
-        width: c_width - 10,
-        height: c_height - 10
+            x: 0,
+            y: 0
+        },
+        width: c_width,
+        height: c_height
     }
 
     l_image = {
         origin: {
-            x: 5,
-            y: 5
-        }
-        width: c_width - 10,
-        height: c_height - 10
+            x: 0,
+            y: 0
+        },
+        width: c_width,
+        height: c_height
     }
 
     get_diffs = (event) ->
@@ -172,7 +172,7 @@ $ ->
         img = new Image()
 
         img.onload = ->
-            context.drawImage(img, 5, 5, c_width - 10, c_height - 10)
+            context.drawImage(img, 0, 0, c_width, c_height)
 
         img.src = source
         window.images[leg] = img
