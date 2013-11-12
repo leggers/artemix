@@ -4,7 +4,7 @@
 
 $p: absolute;
 $t: 0px;
-$ll: 0px;
+$ll: 30px;
 $rl: 0px;
 $wp: relative;
 $wh: 660px;
@@ -12,38 +12,43 @@ $ww: 300px;
 
 .left_wrapper {
     position: $wp;
-    height: $wh;
-    width: $ww;
+    height: $wh + $ll;
+    width: $ww + $ll;
     float: left;
 
     #left_cover {
         position: $p;
         top: $t;
-        // left: $ll;
+        left: $ll;
     }
 
     #left_leg {
         position: $p;
         top: $t;
-        // left: $ll;
+        left: $ll;
     }
 
     #left_cover_canvas {
         position: $p;
         top: $t;
-        // left: $ll;
+        left: $ll;
     }
 
     #left_height {
         height: $wh;
+    }
+
+    #left_width {
+        width: $ww;
+        left: $ll;
     }
 }
 
 
 .right_wrapper {
     position: $wp;
-    height: $wh;
-    width: $ww;
+    height: $wh + $ll;
+    width: $ww + $ll;
     left: $ww + 100;
 
     #right_cover {
@@ -66,5 +71,10 @@ $ww: 300px;
 
     #right_height {
         height: $wh;
+        left: $ww + 20;
+    }
+
+    #right_width {
+        width: $ww;
     }
 }
