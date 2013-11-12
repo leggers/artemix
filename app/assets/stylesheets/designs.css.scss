@@ -33,6 +33,10 @@ $ww: 300px;
         top: $t;
         // left: $ll;
     }
+
+    #left_height {
+        height: $wh;
+    }
 }
 
 
@@ -58,5 +62,9 @@ $ww: 300px;
         position: $p;
         top: $t;
         left: $rl;
+    }
+
+    #right_height {
+        height: $wh;
     }
 }

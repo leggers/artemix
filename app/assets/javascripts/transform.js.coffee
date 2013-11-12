@@ -29,6 +29,46 @@ $ ->
 
         $('#mirror').change(mirror_image)
 
+    create_sliders = ->
+        $('#left_height').slider({
+            orientation: 'vertical',
+            range: true,
+            min: 0,
+            max: c_height,
+            values: [0, c_height],
+            slide: (event, ui) ->
+                l_image.height = ui.values[1] - ui.values[0]
+                draw_left_image()
+        })
+        $('#left_width').slider({
+            range: true,
+            min: 0,
+            max: c_width,
+            values: [0, c_width],
+            slide: (event, ui) ->
+                l_image.width = ui.values[1] - ui.values[0]
+                draw_left_image()
+        })
+        $('#right_height').slider({
+            orientation: 'vertical',
+            range: true,
+            min: 0,
+            max: c_height,
+            values: [0, c_height],
+            slide: (event, ui) ->
+                r_image.height = ui.values[1] - ui.values[0]
+                draw_right_image()
+        })
+        $('#right_width').slider({
+            range: true,
+            min: 0,
+            max: c_width,
+            values: [0, c_width],
+            slide: (event, ui) ->
+                r_image.width = ui.values[1] - ui.values[0]
+                draw_right_image()
+        })
+
     mouse_up = () ->
         console.log('up')
         mouse_x = 0
@@ -149,6 +189,7 @@ $ ->
         draw_right_image()
 
     bind_listeners()
+    create_sliders()
 
     have_two_images = ->
         window.ids.left != undefined && window.ids.right != undefined
