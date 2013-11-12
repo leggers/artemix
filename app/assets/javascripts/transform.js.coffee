@@ -150,14 +150,14 @@ $ ->
 
     bind_listeners()
 
-    two_images = ->
+    have_two_images = ->
         window.ids.left != undefined && window.ids.right != undefined
 
     window.add_leg = (leg, source) ->
         # remove option from dropdown and show mirror checkbox
         $("#leg option[value='#{leg}']").remove()
         $('#mirror_option').show()
-        if two_images()
+        if have_two_images()
             $('#mirror_option').hide()
             $('#mirror').prop('checked', false)
             mirror_image() if mirrored
