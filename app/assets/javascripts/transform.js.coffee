@@ -35,6 +35,18 @@ $ ->
     slider_left_button = (ui) ->
         ui.value == ui.values[0]
 
+    resize_and_move_right_image_vertically = () ->
+        0
+
+    resize_and_move_left_image_vertically = () ->
+        0
+
+    resize_and_move_left_image_horizontally = () ->
+        0
+
+    resize_and_move_right_image_horizontally = () ->
+        0
+
     create_sliders = ->
         $('#left_height').slider({
             orientation: 'vertical',
@@ -75,8 +87,14 @@ $ ->
                 $(this).data('most_recent_value', ui.value)
             slide: (event, ui) ->
                 origin_delta = $(this).data('most_recent_value') - ui.value
-                r_image.height = ui.values[1] - ui.values[0]
-                r_image.origin.y += origin_delta if slider_top_button(ui)
+                new_height = ui.values[1] - ui.values[0]
+                r_image.height = new_height
+                if mirrored
+                    l_image.height = new_height
+                if slider_top_button(ui)
+                    r_image.origin.y += origin_delta
+                    if mirrored
+                        l_image.origin.y += origin_delta
                 draw_right_image()
                 $(this).data('most_recent_value', ui.value)
         })
