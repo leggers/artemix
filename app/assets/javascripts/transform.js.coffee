@@ -29,11 +29,14 @@ $ ->
 
         $('#mirror').change(mirror_image)
 
-    new_image_height = (slider_values) ->
+    new_image_dimension = (slider_values) ->
         slider_values.values[1] - slider_values.values[0]
 
-    get_origin_delta = (slider_values, slider_jquery) ->
+    get_y_delta = (slider_values, slider_jquery) ->
         if slider_top_button(slider_values) then slider_jquery.data('most_recent_value') - slider_values.value else 0
+
+    get_x_delta = (slider_values, slider_jquery) ->
+        if slider_left_button(slider_values) then slider_jquery.data('most_recent_value') - slider_values.value else 0
 
     update_slider_value = (slider_jquery, slider_values) ->
         slider_jquery.data('most_recent_value', slider_values.value)
@@ -45,10 +48,10 @@ $ ->
         ui.value == ui.values[0]
 
     resize_and_move_image_vertically = (image, slider_values, slider_jquery) ->
-        new_height = new_image_height(slider_values)
-        origin_delta = get_origin_delta(slider_values, slider_jquery)
+        new_height = new_image_dimension(slider_values)
+        delta_y = get_y_delta(slider_values, slider_jquery)
         image.height = new_height
-        image.origin.y += origin_delta
+        image.origin.y += delta_y
 
     resize_and_move_right_image_vertically = (slider_values, slider_jquery) ->
         resize_and_move_image_vertically(r_image, slider_values, slider_jquery)
@@ -66,11 +69,27 @@ $ ->
             draw_right_image()
         update_slider_value(slider_jquery, slider_values)
 
-    resize_and_move_left_image_horizontally = () ->
-        0
+    resize_and_move_image_horizontally = (image, slider_values, slider_jquery) ->
+        new_width = new_image_dimension(slider_values)
+        delta_x = get_x_delta(slider_values, slider_jquery)
+        image.width = new_width
+        image.origin.x -= delta_x
 
-    resize_and_move_right_image_horizontally = () ->
-        0
+    resize_and_move_left_image_horizontally = (slider_values, slider_jquery) ->
+        resize_and_move_image_horizontally(l_image, slider_values, slider_jquery)
+        draw_left_image()
+        if mirrored
+            resize_and_move_image_horizontally(r_image, slider_values, slider_jquery)
+            draw_right_image()
+        update_slider_value(slider_jquery, slider_values)
+
+    resize_and_move_right_image_horizontally = (slider_values, slider_jquery) ->
+        resize_and_move_image_horizontally(r_image, slider_values, slider_jquery)
+        draw_right_image()
+        if mirrored
+            resize_and_move_image_horizontally(l_image, slider_values, slider_jquery)
+            draw_left_image()
+        update_slider_value(slider_jquery, slider_values)
 
     create_sliders = ->
         $('#left_height').slider({
@@ -80,7 +99,7 @@ $ ->
             max: c_height,
             values: [0, c_height],
             start: (event, ui) ->
-                $(this).data('most_recent_value', ui.value)
+                update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_left_image_vertically(ui, $(this))
         })
@@ -92,11 +111,7 @@ $ ->
             start: (event, ui) ->
                 $(this).data('most_recent_value', ui.value)
             slide: (event, ui) ->
-                origin_delta = $(this).data('most_recent_value') - ui.value
-                l_image.width = ui.values[1] - ui.values[0]
-                l_image.origin.x -= origin_delta if slider_left_button(ui)
-                draw_left_image()
-                $(this).data('most_recent_value', ui.value)
+                resize_and_move_left_image_horizontally(ui, $(this))
         })
         $('#right_height').slider({
             orientation: 'vertical',
@@ -105,7 +120,7 @@ $ ->
             max: c_height,
             values: [0, c_height],
             start: (event, ui) ->
-                $(this).data('most_recent_value', ui.value)
+                update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_right_image_vertically(ui, $(this))
         })
@@ -115,13 +130,9 @@ $ ->
             max: c_width,
             values: [0, c_width],
             start: (event, ui) ->
-                $(this).data('most_recent_value', ui.value)
+                update_slider_value($(this), ui)
             slide: (event, ui) ->
-                origin_delta = $(this).data('most_recent_value') - ui.value
-                r_image.width = ui.values[1] - ui.values[0]
-                r_image.origin.x -= origin_delta if slider_left_button(ui)
-                draw_right_image()
-                $(this).data('most_recent_value', ui.value)
+                resize_and_move_right_image_horizontally(ui, $(this))
         })
 
     mouse_up = () ->
