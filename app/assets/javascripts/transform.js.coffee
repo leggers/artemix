@@ -111,6 +111,7 @@ $ ->
         update_slider_value(slider_jquery, slider_values)
 
     rotate_image = (context, slider_values, slider_jquery) ->
+        context.clearRect(0, 0, c_width, c_height)
         angle = get_slider_delta(slider_values, slider_jquery)
         context.rotate(angle)
 
@@ -161,6 +162,7 @@ $ ->
             min: -Math.PI,
             max: Math.PI,
             value: 0,
+            step: .001,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
@@ -170,6 +172,7 @@ $ ->
             min: -Math.PI,
             max: Math.PI,
             value: 0,
+            step: .001,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
