@@ -347,7 +347,7 @@ $ ->
         form.find('#transform_mirror').prop('checked', data.mirror)
         form.find('#transform_artwork_id').val(data.artwork_id)
         form.find('#transform_design_id').val(data.design_id)
-        form.find('#transform_rotation')
+        form.find('#transform_rotation').val(data.rotation)
         form.submit()
 
     window.design_created = (design_id) ->
@@ -357,6 +357,7 @@ $ ->
             r_image.artwork_id = window.ids['right']
             r_image.design_id = design_id
             r_image.mirror = $('#mirror').is(':checked')
+            right_image.rotation = $('#right_rotation').data('most_recent_value')
             fill_in_form(right, r_image)
 
         if window.ids.left != undefined
@@ -365,4 +366,5 @@ $ ->
             l_image.artwork_id = window.ids['left']
             l_image.design_id = design_id
             l_image.mirror = $('#mirror').is(':checked')
+            right_image.rotation = $('#right_rotation').data('most_recent_value')
             fill_in_form(left, l_image)

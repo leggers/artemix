@@ -44,6 +44,10 @@ $ww: 300px;
         left: $ll;
         display: none;
     }
+
+    #left_rotation {
+        display: none;
+    }
 }
 
 
@@ -79,6 +83,10 @@ $ww: 300px;
 
     #right_width {
         width: $ww;
+        display: none;
+    }
+
+    #right_rotation {
         display: none;
     }
 }
