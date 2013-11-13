@@ -33,10 +33,13 @@ $ ->
         slider_values.values[1] - slider_values.values[0]
 
     get_y_delta = (slider_values, slider_jquery) ->
-        if slider_top_button(slider_values) then slider_jquery.data('most_recent_value') - slider_values.value else 0
+        if slider_top_button(slider_values) then get_slider_delta(slider_values, slider_jquery) else 0
 
     get_x_delta = (slider_values, slider_jquery) ->
-        if slider_left_button(slider_values) then slider_jquery.data('most_recent_value') - slider_values.value else 0
+        if slider_left_button(slider_values) then get_slider_delta(slider_values, slider_jquery) else 0
+
+    get_slider_delta = (slider_values, slider_jquery) ->
+        slider_jquery.data('most_recent_value') - slider_values.value
 
     update_slider_value = (slider_jquery, slider_values) ->
         slider_jquery.data('most_recent_value', slider_values.value)
@@ -92,13 +95,24 @@ $ ->
         update_slider_value(slider_jquery, slider_values)
 
     rotate_right_image = (slider_values, slider_jquery) ->
-        0
+        rotate_image(r_context, slider_values, slider_jquery)
+        draw_right_image()
+        if mirrored
+            rotate_image(l_context, slider_values, slider_jquery)
+            draw_left_image()
+        update_slider_value(slider_jquery, slider_values)
 
     rotate_left_image = (slider_values, slider_jquery) ->
-        0
+        rotate_image(l_context, slider_values, slider_jquery)
+        draw_left_image()
+        if mirrored
+            rotate_image(r_context, slider_values, slider_jquery)
+            draw_right_image()
+        update_slider_value(slider_jquery, slider_values)
 
-    rotate_image = (image, slider_values, slider_jquery) ->
-        0
+    rotate_image = (context, slider_values, slider_jquery) ->
+        angle = get_slider_delta(slider_values, slider_jquery)
+        context.rotate(angle)
 
     create_sliders = ->
         $('#left_height').slider({
@@ -144,10 +158,22 @@ $ ->
                 resize_and_move_right_image_horizontally(ui, $(this))
         })
         $('#left_rotation').slider({
-
+            min: -Math.PI,
+            max: Math.PI,
+            value: 0,
+            start: (event, ui) ->
+                update_slider_value($(this), ui)
+            slide: (event, ui) ->
+                rotate_left_image(ui, $(this))
         })
         $('#right_rotation').slider({
-
+            min: -Math.PI,
+            max: Math.PI,
+            value: 0,
+            start: (event, ui) ->
+                update_slider_value($(this), ui)
+            slide: (event, ui) ->
+                rotate_right_image(ui, $(this))
         })
 
     mouse_up = () ->
