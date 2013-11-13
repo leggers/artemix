@@ -260,19 +260,16 @@ $ ->
     have_two_images = ->
         window.ids.left != undefined && window.ids.right != undefined
 
-    window.add_leg = (leg, source) ->
-        # remove option from dropdown and show mirror checkbox
-        $("#leg option[value='#{leg}']").remove()
-        $('#mirror_option').show()
-        if have_two_images()
-            $('#mirror_option').hide()
-            $('#mirror').prop('checked', false)
-            mirror_image() if mirrored
-            $('#new_artwork').slideUp()
-
-        # clear artwork name text box
+    clear_artwork_info = ->
         $('#artwork_name').val('')
+        $('#artwork_artist').val('')
+        $('#artwork_attribution').val('')
 
+    show_resize_sliders = (leg) ->
+        $("##{leg}_width").show()
+        $("##{leg}_height").show()
+
+    window.add_leg = (leg, source) ->
         # add image to canvas
         canvas = $("##{leg}_leg")[0]
         context = canvas.getContext('2d')
@@ -283,6 +280,19 @@ $ ->
 
         img.src = source
         window.images[leg] = img
+
+        clear_artwork_info()
+        show_resize_sliders(leg)
+
+        # remove option from dropdown and show mirror checkbox
+        $("#leg option[value='#{leg}']").remove()
+        $('#mirror_option').show()
+        if have_two_images()
+            $('#mirror_option').hide()
+            $('#mirror').prop('checked', false)
+            mirror_image() if mirrored
+            $('#new_artwork').slideUp()
+
 
     fill_in_form = (form, data) ->
         form.find('#transform_image_x').val(data.origin.x)

@@ -36,11 +36,13 @@ $ww: 300px;
 
     #left_height {
         height: $wh;
+        display: none;
     }
 
     #left_width {
         width: $ww;
         left: $ll;
+        display: none;
     }
 }
 
@@ -72,9 +74,11 @@ $ww: 300px;
     #right_height {
         height: $wh;
         left: $ww + 20;
+        display: none;
     }
 
     #right_width {
         width: $ww;
+        display: none;
     }
 }
