@@ -91,6 +91,15 @@ $ ->
             draw_left_image()
         update_slider_value(slider_jquery, slider_values)
 
+    rotate_right_image = (slider_values, slider_jquery) ->
+        0
+
+    rotate_left_image = (slider_values, slider_jquery) ->
+        0
+
+    rotate_image = (image, slider_values, slider_jquery) ->
+        0
+
     create_sliders = ->
         $('#left_height').slider({
             orientation: 'vertical',
@@ -133,6 +142,12 @@ $ ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_right_image_horizontally(ui, $(this))
+        })
+        $('#left_rotation').slider({
+
+        })
+        $('#right_rotation').slider({
+
         })
 
     mouse_up = () ->

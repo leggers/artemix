@@ -12,25 +12,25 @@ $ww: 300px;
 
 .left_wrapper {
     position: $wp;
-    height: $wh + $ll;
+    height: $wh + 2 * $ll;
     width: $ww + $ll;
     float: left;
 
     #left_cover {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $ll;
     }
 
     #left_leg {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $ll;
     }
 
     #left_cover_canvas {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $ll;
     }
 
@@ -49,25 +49,25 @@ $ww: 300px;
 
 .right_wrapper {
     position: $wp;
-    height: $wh + $ll;
+    height: $wh + 2 * $ll;
     width: $ww + $ll;
     left: $ww + 100;
 
     #right_cover {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $rl;
     }
 
     #right_leg {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $rl;
     }
 
     #right_cover_canvas {
         position: $p;
-        top: $t;
+        top: $t + $ll;
         left: $rl;
     }
 
