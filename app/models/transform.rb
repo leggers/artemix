@@ -25,7 +25,7 @@ class Transform < ActiveRecord::Base
     self.rotation = self.rotation.to_f * 180 / Math::PI
   end
 
-  # For MVP, this method moves, resizes, composites, and mirrors. Nothing else
+  # For MVP, this method moves, resizes, composites, rotates (at your own risk!), and mirrors. Nothing else
   # Input: a Magick::ImageList
   # Output: a Magick::ImageList that represents the composite of the inputted image on top of the transformed image
   # Imagine glueing transform's artwork onto the passed-in image.

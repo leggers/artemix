@@ -11,6 +11,7 @@ describe Transform do
     :image_y => 1,
     :height => 1,
     :width => 1,
+    :rotation => Math::PI / 2,
     :artwork => @artwork,
     :leg => "left"
   } } 
@@ -52,10 +53,12 @@ describe Transform do
     it 'should change values when scaled' do
       t = Transform.new(valid_attributes)
       t.scale
-      t.image_x = valid_attributes[:image_x] * 20
-      t.image_y = valid_attributes[:image_y] * 20
-      t.height = valid_attributes[:height] * 20
-      t.width = valid_attributes[:width] * 20
+      t.image_x.should eq(valid_attributes[:image_x] * 20)
+      t.image_y.should eq(valid_attributes[:image_y] * 20)
+      t.height.should eq(valid_attributes[:height] * 20)
+      t.width.should eq(valid_attributes[:width] * 20)
+      p valid_attributes[:rotation]
+      t.rotation.should eq(valid_attributes[:rotation] * 180 / Math::PI)
     end
   end
 end
