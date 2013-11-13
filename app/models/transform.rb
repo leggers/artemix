@@ -22,6 +22,7 @@ class Transform < ActiveRecord::Base
     self.width = self.width.to_i.abs * scale_factor
     self.artwork_id = self.artwork_id.to_i
     self.design_id = self.design_id.to_i
+    self.rotation = self.rotation.to_f * 180 / Math::PI
   end
 
   # For MVP, this method moves, resizes, composites, and mirrors. Nothing else
