@@ -32,7 +32,7 @@ class Transform < ActiveRecord::Base
   def apply(template_image)
     image = Magick::ImageList.new(self.artwork.image.path)
 
-    image[0].rotate!(rotation) unless rotation.nil?
+    # image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(self.width, self.height)
 
     # x_copies = (image[0].columns / template[0].columns).ceil
