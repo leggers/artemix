@@ -7,6 +7,8 @@ gem 'rails', '4.0.0'
 # gem 'sqlite3'
 # Let's use postgres
 gem 'pg'
+# Actually, let's use MySql2
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
