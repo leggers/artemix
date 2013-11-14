@@ -18,6 +18,24 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
+    r_image = {
+        origin: {
+            x: 0,
+            y: 0
+        },
+        width: c_width,
+        height: c_height
+    }
+
+    l_image = {
+        origin: {
+            x: 0,
+            y: 0
+        },
+        width: c_width,
+        height: c_height
+    }
+
     bind_listeners = ->
         $('#left_cover_canvas').mousedown(left_down)
         $('#left_cover_canvas').mousemove(left_move)
@@ -198,24 +216,6 @@ $ ->
         l_down = false
         mouse_up()
 
-    r_image = {
-        origin: {
-            x: 0,
-            y: 0
-        },
-        width: c_width,
-        height: c_height
-    }
-
-    l_image = {
-        origin: {
-            x: 0,
-            y: 0
-        },
-        width: c_width,
-        height: c_height
-    }
-
     get_diffs = (event) ->
         diffs = [0, 0]
 
@@ -347,17 +347,18 @@ $ ->
         form.find('#transform_mirror').prop('checked', data.mirror)
         form.find('#transform_artwork_id').val(data.artwork_id)
         form.find('#transform_design_id').val(data.design_id)
-        form.find('#transform_rotation').val(data.rotation)
+        # form.find('#transform_rotation').val(data.rotation)
         form.submit()
 
     window.design_created = (design_id) ->
+        console.log('design created')
         if window.ids.right != undefined
             right = $('#right_transform')
             r_image.leg = "right"
             r_image.artwork_id = window.ids['right']
             r_image.design_id = design_id
             r_image.mirror = $('#mirror').is(':checked')
-            right_image.rotation = $('#right_rotation').data('most_recent_value')
+            r_image.rotation = $('#right_rotation').data('most_recent_value')
             fill_in_form(right, r_image)
 
         if window.ids.left != undefined
@@ -366,5 +367,5 @@ $ ->
             l_image.artwork_id = window.ids['left']
             l_image.design_id = design_id
             l_image.mirror = $('#mirror').is(':checked')
-            right_image.rotation = $('#right_rotation').data('most_recent_value')
+            l_image.rotation = $('#left_rotation').data('most_recent_value')
             fill_in_form(left, l_image)
