@@ -1,5 +1,5 @@
 class Transform < ActiveRecord::Base
-  require 'rmagick'
+  # require 'rmagick'
   
   validates :image_x, :presence => true
   validates :image_y, :presence => true
