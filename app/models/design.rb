@@ -1,4 +1,5 @@
 class Design < ActiveRecord::Base
+  require 'rmagick'
   has_attached_file :image
 
   validates_presence_of :name # 24 character soft upper limit for visual reasons
