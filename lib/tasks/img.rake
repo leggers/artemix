@@ -1,4 +1,5 @@
 namespace :img do
+  require 'RMagick'
   desc "Takes a template file and converts it into the two template images seen on the site"
   task covers: :environment do
     directory = "#{Rails.root}/app/assets/images"
