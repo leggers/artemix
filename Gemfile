@@ -58,6 +58,9 @@ group :test, :development do
   gem 'rr'
 end
 
+# Use puma as webserver
+gem 'puma'
+
 # Foreign keys in database
 gem 'foreigner'
 
