@@ -1,4 +1,5 @@
 window.alert("err0r! err0r!")
+console.log("<%= p @artwork.errors %>")
 btn = $('#upload')
 btn.attr('disabled', false)
 btn.val('Upload Image')
