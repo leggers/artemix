@@ -1,24 +1,10 @@
-set :application, 'artemix'
-set :repo_url, 'git@github.com:leggers/artemix.git'
-
-set :user, 'leggers'
-set :domain, 'artemix.bombsheller.com'
-set :application, 'artemix'
+set :application, 'my_app_name'
+set :repo_url, 'git@example.com:me/my_repo.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, '/home/leggers/artemix'
-set :scm, :git
-set :branch, 'master'
-set :scm_verbose, true
-set :use_sudo, false
-set :normalize_asset_timestamps, false
-set :rails_env, :production
-
-role :app, domain
-role :web, domain
-role :db, domain :primary => true
-
+# set :deploy_to, '/var/www/my_app'
+# set :scm, :git
 
 # set :format, :pretty
 # set :log_level, :debug
@@ -36,7 +22,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-      execute :touch, release_path.join('tmp/restart.txt')
+      # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
