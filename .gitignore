@@ -21,3 +21,5 @@
 test.png
 
 config/database.yml
+
+/public/assets/*
