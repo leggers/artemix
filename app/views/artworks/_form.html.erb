@@ -21,17 +21,17 @@
     <%= f.text_field :name %>
   </div> -->
   <div class='field'>
-    <%= f.label :artist, "Who made this artwork? (~16 characters max)" %>
+    <%= f.label :artist, "Original Artist (~16 characters max)" %>
     <%= f.text_field :artist %>
   </div>
   <div class='field'>
-    <%= f.label :attribution, "Where can we find them?" %>
+    <%= f.label :attribution, "Attribution" %>
     <%= f.text_field :attribution %>
   </div>
-  <div class="field">
+<!--   <div class="field">
     <%= f.label :locked, "Do NOT allow others to use this image (only possible if you own the copyright)" %><br>
     <%= f.check_box :locked %>
-  </div>
+  </div> -->
   <div class="field">
     <%= f.label :leg %><br>
     <%= select_tag(:leg, options_for_select([["Left", "left"], ["Right", 'right']]) ) %>
