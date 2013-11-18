@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029180949) do
+ActiveRecord::Schema.define(version: 20131118184342) do
 
   create_table "artworks", force: true do |t|
     t.boolean  "locked"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131029180949) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "contact"
   end
 
   create_table "transforms", force: true do |t|
