@@ -21,12 +21,12 @@ namespace :deploy do
 
   desc 'Symlink config files'
   task :symlink_config_files do
-    sh "ln -s #{deploy_to}/shared/config/database.yml #{current_path}/config/database.yml"
+    sh "ln -nfs #{deploy_to}/shared/config/database.yml #{current_path}/config/database.yml"
   end
 
   desc 'Symlink public folder'
   task :symlink_public_folder do
-    sh "ln -s #{deploy_to}/public #{current_path}/public"
+    sh "ln -fs #{deploy_to}/public/ #{current_path}/public"
   end
 
   desc 'Restart application'
@@ -47,8 +47,8 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
-  after :finishing, 'deploy:symlink_public_folder'
-  after :finishing, 'deploy:symlink_config_files'
+  # after :finishing, 'deploy:symlink_config_files'
+  # after :finishing, 'deploy:symlink_public_folder'
   after :finishing, 'deploy:restart'
 
 end
