@@ -152,7 +152,6 @@ $ ->
     create_sliders = ->
         $('#left_height').slider({
             orientation: 'vertical',
-            range: true,
             min: 0,
             max: c_height * 2,
             value: c_height,
@@ -162,7 +161,6 @@ $ ->
                 resize_and_move_left_image_vertically(ui, $(this))
         })
         $('#left_width').slider({
-            range: true,
             min: 0,
             max: c_width * 2,
             value: c_width,
@@ -173,7 +171,6 @@ $ ->
         })
         $('#right_height').slider({
             orientation: 'vertical',
-            range: true,
             min: 0,
             max: c_height * 2,
             value: c_height,
@@ -183,7 +180,6 @@ $ ->
                 resize_and_move_right_image_vertically(ui, $(this))
         })
         $('#right_width').slider({
-            range: true,
             min: 0,
             max: c_width * 2,
             value: c_width,
