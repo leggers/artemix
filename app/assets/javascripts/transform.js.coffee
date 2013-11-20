@@ -209,27 +209,6 @@ $ ->
                 rotate_right_image(ui, $(this))
         })
 
-    new_image_dimension = (slider_values) ->
-        slider_values.values[1] - slider_values.values[0]
-
-    get_y_delta = (slider_values, slider_jquery) ->
-        if slider_top_button(slider_values) then get_slider_delta(slider_values, slider_jquery) else 0
-
-    get_x_delta = (slider_values, slider_jquery) ->
-        if slider_left_button(slider_values) then get_slider_delta(slider_values, slider_jquery) else 0
-
-    get_slider_delta = (slider_values, slider_jquery) ->
-        slider_jquery.data('most_recent_value') - slider_values.value
-
-    update_slider_value = (slider_jquery, slider_values) ->
-        slider_jquery.data('most_recent_value', slider_values.value)
-
-    slider_top_button = (ui) ->
-        ui.value == ui.values[1]
-
-    slider_left_button = (ui) ->
-        ui.value == ui.values[0]
-
     resize_and_move_right_image_vertically = (slider_values, slider_jquery) ->
         resize_and_move_image_vertically(r_image, slider_values, slider_jquery)
         draw_right_image()
@@ -247,8 +226,8 @@ $ ->
         update_slider_value(slider_jquery, slider_values)
 
     resize_and_move_image_vertically = (image, slider_values, slider_jquery) ->
-        new_height = new_image_dimension(slider_values)
-        delta_y = get_y_delta(slider_values, slider_jquery)
+        new_height = slider_values.value
+        delta_y = get_slider_delta(slider_values, slider_jquery) / 2
         image.height = new_height
         image.origin.y += delta_y
 
@@ -269,10 +248,16 @@ $ ->
         update_slider_value(slider_jquery, slider_values)
 
     resize_and_move_image_horizontally = (image, slider_values, slider_jquery) ->
-        new_width = new_image_dimension(slider_values)
-        delta_x = get_x_delta(slider_values, slider_jquery)
+        new_width = slider_values.value
+        delta_x = get_slider_delta(slider_values, slider_jquery) / 2
         image.width = new_width
-        image.origin.x -= delta_x
+        image.origin.x += delta_x
+
+    get_slider_delta = (slider_values, slider_jquery) ->
+        slider_jquery.data('most_recent_value') - slider_values.value
+
+    update_slider_value = (slider_jquery, slider_values) ->
+        slider_jquery.data('most_recent_value', slider_values.value)
 
     rotate_right_image = (slider_values, slider_jquery) ->
         rotate_image(r_context, slider_values, slider_jquery)
