@@ -81,7 +81,7 @@ $ ->
 
         diffs
 
-    
+
     draw_right_image = ->
         r_context.clearRect(0, 0, c_width, c_height)
         if window.images.right != undefined
@@ -154,8 +154,8 @@ $ ->
             orientation: 'vertical',
             range: true,
             min: 0,
-            max: c_height,
-            values: [0, c_height],
+            max: c_height * 2,
+            value: c_height,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
@@ -164,8 +164,8 @@ $ ->
         $('#left_width').slider({
             range: true,
             min: 0,
-            max: c_width,
-            values: [0, c_width],
+            max: c_width * 2,
+            value: c_width,
             start: (event, ui) ->
                 $(this).data('most_recent_value', ui.value)
             slide: (event, ui) ->
@@ -175,8 +175,8 @@ $ ->
             orientation: 'vertical',
             range: true,
             min: 0,
-            max: c_height,
-            values: [0, c_height],
+            max: c_height * 2,
+            value: c_height,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
@@ -185,8 +185,8 @@ $ ->
         $('#right_width').slider({
             range: true,
             min: 0,
-            max: c_width,
-            values: [0, c_width],
+            max: c_width * 2,
+            value: c_width,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
