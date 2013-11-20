@@ -234,12 +234,6 @@ $ ->
     slider_left_button = (ui) ->
         ui.value == ui.values[0]
 
-    resize_and_move_image_vertically = (image, slider_values, slider_jquery) ->
-        new_height = new_image_dimension(slider_values)
-        delta_y = get_y_delta(slider_values, slider_jquery)
-        image.height = new_height
-        image.origin.y += delta_y
-
     resize_and_move_right_image_vertically = (slider_values, slider_jquery) ->
         resize_and_move_image_vertically(r_image, slider_values, slider_jquery)
         draw_right_image()
@@ -256,11 +250,11 @@ $ ->
             draw_right_image()
         update_slider_value(slider_jquery, slider_values)
 
-    resize_and_move_image_horizontally = (image, slider_values, slider_jquery) ->
-        new_width = new_image_dimension(slider_values)
-        delta_x = get_x_delta(slider_values, slider_jquery)
-        image.width = new_width
-        image.origin.x -= delta_x
+    resize_and_move_image_vertically = (image, slider_values, slider_jquery) ->
+        new_height = new_image_dimension(slider_values)
+        delta_y = get_y_delta(slider_values, slider_jquery)
+        image.height = new_height
+        image.origin.y += delta_y
 
     resize_and_move_left_image_horizontally = (slider_values, slider_jquery) ->
         resize_and_move_image_horizontally(l_image, slider_values, slider_jquery)
@@ -277,6 +271,12 @@ $ ->
             resize_and_move_image_horizontally(l_image, slider_values, slider_jquery)
             draw_left_image()
         update_slider_value(slider_jquery, slider_values)
+
+    resize_and_move_image_horizontally = (image, slider_values, slider_jquery) ->
+        new_width = new_image_dimension(slider_values)
+        delta_x = get_x_delta(slider_values, slider_jquery)
+        image.width = new_width
+        image.origin.x -= delta_x
 
     rotate_right_image = (slider_values, slider_jquery) ->
         rotate_image(r_context, slider_values, slider_jquery)
