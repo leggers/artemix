@@ -1,10 +1,10 @@
 <%= form_for(@design, :remote => true) do |f| %>
     <div class='field'>
-        <%= f.label :name, "Design Name (~24 characters max)" %>
+        <%= f.label :name, "Design name (max. 24 characters)" %>
         <%= f.text_field :name %>
     </div>
     <div class='field'>
-        <%= f.label :designer %>
+        <%= f.label :designer, "Design by (max. 40 characters)" %>
         <%= f.text_field :designer %>
     </div>
     <div class='field'>
