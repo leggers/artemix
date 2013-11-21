@@ -16,7 +16,8 @@ transform_defaults = {
 template = Artwork.create!(
   :locked => true,
   :name => 'template',
-  :image => File.open( "#{Rails.root}/app/assets/images/template.png" )
+  :image => File.open( "#{Rails.root}/app/assets/images/template.png" ),
+  :artist => 'bombsheller'
 )
 p 'Created template Artwork'
 rocket = Artwork.create!(
