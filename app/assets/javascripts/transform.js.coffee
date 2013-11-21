@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+    window.alert('hey!')
     window.images = {}
     window.ids = {}
     r_down = false
