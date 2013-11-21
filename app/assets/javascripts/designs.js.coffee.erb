@@ -33,18 +33,17 @@ $ ->
     texture = new THREE.Texture()
 
     image_loader = new THREE.ImageLoader(loading_manager)
-    image_loader.load( "<%= asset_path 'rocket.jpg' %>", (image) ->
+    image_loader.load( "<%= asset_path 'butterfly_blue.jpg' %>", (image) ->
         texture.image = image
         texture.needsUpdate = true
     )
 
-    # model_loader = new THREE.JSONLoader(loading_manager)
-    # model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
-    #     mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
-    #     mesh.position.set(0, 0, 0)
-    #     scene.add(mesh)
-
-    # )
+    model_loader = new THREE.JSONLoader(loading_manager)
+    model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
+        mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
+        mesh.position.set(0, 0, 0)
+        scene.add(mesh)
+    )
 
     
 

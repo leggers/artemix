@@ -11,23 +11,23 @@ set :deploy_to, '/var/www/artemix'
 # set :log_level, :debug
 # set :pty, true
 
-# set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets public/system public/artworks}
 
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 # set :keep_releases, 5
 
 namespace :deploy do
 
-  desc 'Symlink config files'
-  task :symlink_config_files do
-    sh "ln -nfs #{deploy_to}/shared/config/database.yml #{current_path}/config/database.yml"
-  end
+  # desc 'Symlink config files'
+  # task :symlink_config_files do
+  #   sh "ln -nfs #{deploy_to}/shared/config/database.yml #{current_path}/config/database.yml"
+  # end
 
-  desc 'Symlink public folder'
-  task :symlink_public_folder do
-    sh "ln -fs #{deploy_to}/public/ #{current_path}/public"
-  end
+  # desc 'Symlink public folder'
+  # task :symlink_public_folder do
+  #   sh "ln -fs #{deploy_to}/public/ #{current_path}/public"
+  # end
 
   desc 'Restart application'
   task :restart do
@@ -46,9 +46,11 @@ namespace :deploy do
     end
   end
 
+  after :finishing, 'deploy:migrate'
   after :finishing, 'deploy:cleanup'
   # after :finishing, 'deploy:symlink_config_files'
   # after :finishing, 'deploy:symlink_public_folder'
+  after :finishing, 'deploy:compile_assets'
   after :finishing, 'deploy:restart'
 
 end

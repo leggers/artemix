@@ -1,4 +1,6 @@
 set :stage, :production
+set :rails_env, 'production'
+set :migration_role, 'migrator'
 
 # Simple Role Syntax
 # ==================
@@ -8,7 +10,9 @@ set :stage, :production
 # role :app, %w{deploy@example.com}
 # role :web, %w{deploy@example.com}
 # role :db,  %w{deploy@example.com}
-role :all, %w{leggers@titica.bombsheller.com}
+role :app, %w{leggers@titica.bombsheller.com}
+role :web, %w{leggers@titica.bombsheller.com}
+role :db, %w{leggers@titica.bombsheller.com}
 
 # Extended Server Syntax
 # ======================
