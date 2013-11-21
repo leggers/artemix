@@ -36,7 +36,6 @@ namespace :deploy do
     end
   end
 
-  before :starting, 
   after :finishing, 'deploy:migrate'
   after :finishing, 'deploy:cleanup'
   after :finishing, 'deploy:compile_assets'
