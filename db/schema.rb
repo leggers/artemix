@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118184342) do
+ActiveRecord::Schema.define(version: 20131122201038) do
 
   create_table "artworks", force: true do |t|
-    t.boolean  "locked",    default: false
+    t.boolean  "locked",             default: false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20131118184342) do
     t.datetime "updated_at"
     t.integer  "artwork_id"
     t.string   "leg"
-    t.integer  "rotation"
+    t.float    "rotation"
     t.boolean  "mirror",     default: false
     t.integer  "design_id"
   end
