@@ -7,10 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 transform_defaults = {
-  :image_x => 330,
-  :image_y => 1000,
-  :width => 5425,
-  :height => 11275,
+  :image_x => 330 / 20,
+  :image_y => 1000 / 20,
+  :width => 5425 / 20,
+  :height => 11275 / 20,
+  :rotation => 0
 }
 
 template = Artwork.create!(
@@ -72,7 +73,7 @@ t2 = Transform.create!(
     :mirror => false,
     :artwork => bb,
     :design => d2,
-    :rotation => 90
+    :rotation => Math::PI / 2
   })
 )
 t3 = Transform.create!(
@@ -81,7 +82,7 @@ t3 = Transform.create!(
     :mirror => false,
     :artwork => bz,
     :design => d2,
-    :rotation => 270
+    :rotation => 3 * Math::PI / 2
   })
 )
 p 'Fabricating butterflies Design'

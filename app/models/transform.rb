@@ -5,6 +5,7 @@ class Transform < ActiveRecord::Base
   validates :image_y, :presence => true
   validates :width, :presence => true # negative width correlates to a mirrored image
   validates :height, :presence => true
+  validates :rotation, :presence => true
   validates_inclusion_of :leg, :in => [
     'left',
     'right'
@@ -41,7 +42,7 @@ class Transform < ActiveRecord::Base
   # Imagine glueing transform's artwork onto the passed-in image.
   def apply(template_image)
     self.scale
-    
+
     image = Magick::ImageList.new(self.artwork.image.path)
 
     # image[0].rotate!(rotation) unless rotation.nil?
