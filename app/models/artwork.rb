@@ -1,5 +1,5 @@
 class Artwork < ActiveRecord::Base
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :canvas => "300x660>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :canvas => "600x1320>" }, :default_url => "/images/:style/missing.png"
 
   # soft upper limit of 16 characters for the artist field
   validates :artist, presence: true
