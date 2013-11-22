@@ -4,7 +4,8 @@ describe Transform do
   let(:artwork_attributes) { {
     :locked => false,
     :name => "valid",
-    :image => fixture_file_upload('fourmoons.jpg', 'image/jpeg')
+    :image => fixture_file_upload('fourmoons.jpg', 'image/jpeg'),
+    :artist => 'test'
   } }
   let(:valid_attributes) { {
     :image_x => 1,

@@ -6,7 +6,7 @@ describe Artwork do
     :name => "valid",
     :image => fixture_file_upload('fourmoons.jpg', 'image/jpeg'),
     :artist => 'valid',
-    :source => 'source'
+    :attribution => 'source'
   } }
   it { should have_attached_file(:image) }
   it { should validate_attachment_presence(:image) }
