@@ -1,6 +1,6 @@
 class Design < ActiveRecord::Base
   require 'RMagick'
-  has_attached_file :image
+  has_attached_file :image, :styles => { :store => '1024x1024>' }
 
   validates_presence_of :name # 24 character soft upper limit for visual reasons
   validates_uniqueness_of :name, :case_sensitive => false
