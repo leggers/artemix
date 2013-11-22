@@ -159,6 +159,8 @@ $ ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_left_image_vertically(ui, $(this))
+            stop: (event, ui) ->
+                $(this).slider('option', 'max', ui.value * 2)
         })
         $('#left_width').slider({
             min: 0,
@@ -168,6 +170,8 @@ $ ->
                 $(this).data('most_recent_value', ui.value)
             slide: (event, ui) ->
                 resize_and_move_left_image_horizontally(ui, $(this))
+            stop: (event, ui) ->
+                $(this).slider('option', 'max', ui.value * 2)
         })
         $('#right_height').slider({
             orientation: 'vertical',
@@ -178,6 +182,8 @@ $ ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_right_image_vertically(ui, $(this))
+            stop: (event, ui) ->
+                $(this).slider('option', 'max', ui.value * 2)
         })
         $('#right_width').slider({
             min: 0,
@@ -187,6 +193,8 @@ $ ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_right_image_horizontally(ui, $(this))
+            stop: (event, ui) ->
+                $(this).slider('option', 'max', ui.value * 2)
         })
         $('#left_rotation').slider({
             min: -Math.PI,
