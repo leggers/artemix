@@ -23,7 +23,7 @@ class Transform < ActiveRecord::Base
     self.width = self.width.to_i
     self.artwork_id = self.artwork_id.to_i
     self.design_id = self.design_id.to_i
-    self.rotation = self.rotation.to_i
+    self.rotation = self.rotation.to_f
   end
 
   # takes pixel counts from the website and scales them to actual 300dpi template size
