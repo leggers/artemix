@@ -15,16 +15,24 @@ class Transform < ActiveRecord::Base
 
   validates :artwork, :presence => true
 
+  def prepare_for_create
+    self.image_x = self.image_x.to_i
+    self.image_y = self.image_y.to_i
+    self.height = self.height.to_i
+    self.width = self.width.to_i
+    self.artwork_id = self.artwork_id.to_i
+    self.design_id = self.design_id.to_i
+    self.rotation = self.rotation.to_i
+  end
+
   # takes pixel counts from the website and scales them to actual 300dpi template size
   def scale
     scale_factor = 20 # template.png height divided by canvas height
-    self.image_x = self.image_x.to_i * scale_factor
-    self.image_y = self.image_y.to_i * scale_factor
-    self.height = self.height.to_i.abs * scale_factor
-    self.width = self.width.to_i.abs * scale_factor
-    self.artwork_id = self.artwork_id.to_i
-    self.design_id = self.design_id.to_i
-    self.rotation = self.rotation.to_f * 180 / Math::PI
+    self.image_x *= scale_factor
+    self.image_y *= scale_factor
+    self.height *= scale_factor
+    self.width *= scale_factor
+    self.rotation *= 180 / Math::PI
   end
 
   # For MVP, this method moves, resizes, composites, rotates (at your own risk!), and mirrors. Nothing else
@@ -32,6 +40,8 @@ class Transform < ActiveRecord::Base
   # Output: a Magick::ImageList that represents the composite of the inputted image on top of the transformed image
   # Imagine glueing transform's artwork onto the passed-in image.
   def apply(template_image)
+    self.scale
+    
     image = Magick::ImageList.new(self.artwork.image.path)
 
     # image[0].rotate!(rotation) unless rotation.nil?

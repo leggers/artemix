@@ -1,7 +1,7 @@
 class TransformsController < ApplicationController
   def create
     @transform = Transform.new(transform_params)
-    @transform.scale
+    @transform.prepare_for_create
     respond_to do |format|
       if @transform.save
         format.js {render 'success'}
