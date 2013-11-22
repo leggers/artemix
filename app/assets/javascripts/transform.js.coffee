@@ -229,7 +229,7 @@ $ ->
         new_height = slider_values.value
         delta_y = get_slider_delta(slider_values, slider_jquery) / 2
         image.height = new_height
-        image.origin.y += delta_y / 2
+        image.origin.y += delta_y
 
     resize_and_move_left_image_horizontally = (slider_values, slider_jquery) ->
         resize_and_move_image_horizontally(l_image, slider_values, slider_jquery)
@@ -251,7 +251,7 @@ $ ->
         new_width = slider_values.value
         delta_x = get_slider_delta(slider_values, slider_jquery) / 2
         image.width = new_width
-        image.origin.x += delta_x / 2
+        image.origin.x += delta_x
 
     get_slider_delta = (slider_values, slider_jquery) ->
         slider_jquery.data('most_recent_value') - slider_values.value

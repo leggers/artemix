@@ -18,8 +18,8 @@ class Transform < ActiveRecord::Base
   # takes pixel counts from the website and scales them to actual 300dpi template size
   def scale
     scale_factor = 20 # template.png height divided by canvas height
-    self.image_x = self.image_x.to_i.abs * scale_factor
-    self.image_y = self.image_y.to_i.abs * scale_factor
+    self.image_x = self.image_x.to_i * scale_factor
+    self.image_y = self.image_y.to_i * scale_factor
     self.height = self.height.to_i.abs * scale_factor
     self.width = self.width.to_i.abs * scale_factor
     self.artwork_id = self.artwork_id.to_i
