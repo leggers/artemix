@@ -55,7 +55,8 @@ $ww: 300px;
     position: $wp;
     height: $wh + 2 * $ll;
     width: $ww + $ll;
-    left: $ww + 100;
+    left: 100;
+    float: left;
 
     #right_cover {
         position: $p;
@@ -89,4 +90,10 @@ $ww: 300px;
     #right_rotation {
         display: none;
     }
+}
+
+.model {
+    position: $wp;
+    left: 100;
+    height: $wh + 2 * $ll;
 }
