@@ -13,7 +13,7 @@ $ ->
     RADIUS = 300
     LOCATION_ANGLE = 0
 
-    $model = $('.model') # 3d canvas
+    $canvas = $('.model') # 3d canvas
     renderer = new THREE.WebGLRenderer()
     camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT_RATIO, NEAR_DIST, FAR_DIST )
     scene = new THREE.Scene()
@@ -23,7 +23,7 @@ $ ->
     camera.position.y = 0
     camera.position.z = RADIUS * Math.cos(LOCATION_ANGLE)
     renderer.setSize(MODEL_VIEW_WIDTH, MODEL_VIEW_HEIGHT)
-    $model.append(renderer.domElement)
+    $canvas.append(renderer.domElement)
     scene.add(new THREE.AmbientLight(0xbbbbbb))
 
     loading_manager = new THREE.LoadingManager()
@@ -32,19 +32,35 @@ $ ->
 
     texture = new THREE.Texture()
 
-    image_loader = new THREE.ImageLoader(loading_manager)
-    image_loader.load( "<%= asset_path 'butterfly_blue.jpg' %>", (image) ->
-        texture.image = image
-        texture.needsUpdate = true
-    )
+    # image_loader = new THREE.ImageLoader(loading_manager)
+    # image_loader.load( "<%= asset_path 'butterfly_blue.jpg' %>", (image) ->
+    #     texture.image = image
+    #     texture.needsUpdate = true
+    # )
+
+    texture = THREE.ImageUtils.loadTexture("<%= asset_path 'rocket.jpg' %>")
 
     model_loader = new THREE.JSONLoader(loading_manager)
     model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
-        mesh = new THREE.mesh(geometry, new THREE.MeshFaceMaterial(materials))
+        for material in materials
+            material.color.setHex(0xffaaaa)
+            material.ambient.setHex(0x222222)
+        # mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial( { map: texture} ))
+        # mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
+        mesh = new THREE.Mesh(geometry)
+        mesh.scale.set(10, 10, 10)
         mesh.position.set(0, 0, 0)
         scene.add(mesh)
+        console.log(mesh)
     )
 
-    
+    camera.lookAt(new THREE.Vector3(0,0,0))
 
     renderer.render(scene, camera)
+
+    render_loop = ->
+        requestAnimationFrame(render_loop)
+        renderer.render(scene, camera)
+
+    render_loop()
+
