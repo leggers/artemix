@@ -42,7 +42,6 @@ $ ->
     model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
         for material in materials
             material.ambient.setHex(0xffffff)
-        # mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial( { map: texture} ))
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
         mesh.scale.set(10, 10, 10)
         mesh.position.set(0, 0, 0)
