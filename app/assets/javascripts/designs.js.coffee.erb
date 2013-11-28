@@ -43,13 +43,22 @@ $ ->
         for material in materials
             material.ambient.setHex(0xffffff)
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
-        mesh.scale.set(10, 10, 10)
-        mesh.position.set(0, 0, 0)
+        mesh.scale.set(2.3, 2.3, 2.3)
+        mesh.position.set(0, -160, 0)
         scene.add(mesh)
         console.log(mesh)
         model = mesh
+        window.mesh = mesh
         render_loop()
     )
+
+    # model_loader = new THREE.OBJLoader(loading_manager)
+    # model_loader.load( "<%= asset_path 'leggings.obj' %>", (obj) ->
+    #     console.log(obj)
+    #     obj.children[0].material.map = "<%= asset_path 'rocket.jpg' %>"
+    #     scene.add(obj)
+    #     render_loop()
+    # )
 
     callbacks = {
         mousedown: (event) ->
@@ -107,8 +116,10 @@ $ ->
         right_leg_texture = new THREE.Texture(right_leg_image)
         left_leg_texture.needsUpdate = true
         right_leg_texture.needsUpdate = true
-        model.material.materials[0].map = left_leg_texture
-        model.material.materials[2].map = right_leg_texture
+        left_leg_material = model.material.materials[0]
+        right_leg_material = model.material.materials[1]
+        left_leg_material.map = left_leg_texture
+        right_leg_material.map = right_leg_texture
 
     get_left_leg_image = ->
         $('#left_leg')[0]
