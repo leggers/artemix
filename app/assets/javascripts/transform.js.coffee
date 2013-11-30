@@ -18,6 +18,11 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
+    r_context.fillStyle = '#AAAAAA'
+    r_context.fillRect(0, 0, c_width, c_height)
+    l_context.fillStyle = '#AAAAAA'
+    l_context.fillRect(0, 0, c_width, c_height)
+
     r_image = {
         origin: {
             x: 0,
