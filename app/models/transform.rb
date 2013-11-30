@@ -41,9 +41,10 @@ class Transform < ActiveRecord::Base
       crop_origin_x = 0
       crop_width = center_x - self.image_x
     else
-      crop_origin_x = center_x
+      crop_origin_x = self.image_x.abs if self.image_x < 0
       crop_width = self.width
     end
+    puts "#{self.leg}, x: #{crop_origin_x}, width: #{crop_width}"
     image.crop!(crop_origin_x, 0, crop_width, self.height)
   end
 
@@ -53,8 +54,7 @@ class Transform < ActiveRecord::Base
   # Imagine glueing transform's artwork onto the passed-in image.
   def apply(template_image)
     self.scale
-    self.image_x += template_image.columns / 2 if self.leg == 'right'
-    
+
     image = Magick::ImageList.new(self.artwork.image.path)
 
     # image[0].rotate!(rotation) unless rotation.nil?
@@ -62,6 +62,8 @@ class Transform < ActiveRecord::Base
 
     center_x = template_image.columns / 2
     crop_image!(image, center_x)
+
+    self.image_x += template_image.columns / 2 if self.leg == 'right'
 
     # x_copies = (image[0].columns / template[0].columns).ceil
     # y_copies = (image[0].rows / template[0].rows).ceil
