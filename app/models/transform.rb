@@ -30,7 +30,6 @@ class Transform < ActiveRecord::Base
   def scale
     scale_factor = 20 # template.png height divided by canvas height
     self.image_x *= scale_factor
-    self.image_x += template_image.columns / 2 if self.leg == 'right'
     self.image_y *= scale_factor
     self.height *= scale_factor
     self.width *= scale_factor
@@ -54,7 +53,8 @@ class Transform < ActiveRecord::Base
   # Imagine glueing transform's artwork onto the passed-in image.
   def apply(template_image)
     self.scale
-
+    self.image_x += template_image.columns / 2 if self.leg == 'right'
+    
     image = Magick::ImageList.new(self.artwork.image.path)
 
     # image[0].rotate!(rotation) unless rotation.nil?
