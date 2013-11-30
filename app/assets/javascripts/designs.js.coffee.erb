@@ -52,14 +52,6 @@ $ ->
         render_loop()
     )
 
-    # model_loader = new THREE.OBJLoader(loading_manager)
-    # model_loader.load( "<%= asset_path 'leggings.obj' %>", (obj) ->
-    #     console.log(obj)
-    #     obj.children[0].material.map = "<%= asset_path 'rocket.jpg' %>"
-    #     scene.add(obj)
-    #     render_loop()
-    # )
-
     callbacks = {
         mousedown: (event) ->
             mouse_down = true
