@@ -36,6 +36,19 @@ class Transform < ActiveRecord::Base
     self.rotation *= 180 / Math::PI
   end
 
+  def crop_image!(image, center_x)
+    if self.leg == 'left'
+      crop_origin_x = 0
+      crop_width = center_x - self.image_x
+    else
+      crop_origin_x = self.image_x.abs if self.image_x < 0
+      crop_width = self.width
+      self.image_x = 0
+    end
+    puts "leg: #{self.leg}, x: #{crop_origin_x}, width: #{crop_width}"
+    image.crop!(crop_origin_x, 0, crop_width, self.height)
+  end
+
   # For MVP, this method moves, resizes, composites, rotates (at your own risk!), and mirrors. Nothing else
   # Input: a Magick::ImageList
   # Output: a Magick::ImageList that represents the composite of the inputted image on top of the transformed image
@@ -48,6 +61,11 @@ class Transform < ActiveRecord::Base
     # image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(self.width, self.height)
 
+    center_x = template_image.columns / 2
+    crop_image!(image, center_x)
+
+    self.image_x += template_image.columns / 2 if self.leg == 'right'
+
     # x_copies = (image[0].columns / template[0].columns).ceil
     # y_copies = (image[0].rows / template[0].rows).ceil
 
@@ -59,8 +77,6 @@ class Transform < ActiveRecord::Base
 
     #   end
     # end
-
-    self.image_x += template_image.columns / 2 if self.leg == 'right'
 
     design_image = template_image[0].composite(image, self.image_x, self.image_y, Magick::DstOverCompositeOp)
 
