@@ -30,10 +30,22 @@ class Transform < ActiveRecord::Base
   def scale
     scale_factor = 20 # template.png height divided by canvas height
     self.image_x *= scale_factor
+    self.image_x += template_image.columns / 2 if self.leg == 'right'
     self.image_y *= scale_factor
     self.height *= scale_factor
     self.width *= scale_factor
     self.rotation *= 180 / Math::PI
+  end
+
+  def crop_image!(image, center_x)
+    if self.leg == 'left'
+      crop_origin_x = 0
+      crop_width = center_x - self.image_x
+    else
+      crop_origin_x = center_x
+      crop_width = self.width
+    end
+    image.crop!(crop_origin_x, 0, crop_width, self.height)
   end
 
   # For MVP, this method moves, resizes, composites, rotates (at your own risk!), and mirrors. Nothing else
@@ -48,6 +60,9 @@ class Transform < ActiveRecord::Base
     # image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(self.width, self.height)
 
+    center_x = template_image.columns / 2
+    crop_image!(image, center_x)
+
     # x_copies = (image[0].columns / template[0].columns).ceil
     # y_copies = (image[0].rows / template[0].rows).ceil
 
@@ -59,8 +74,6 @@ class Transform < ActiveRecord::Base
 
     #   end
     # end
-
-    self.image_x += template_image.columns / 2 if self.leg == 'right'
 
     design_image = template_image[0].composite(image, self.image_x, self.image_y, Magick::DstOverCompositeOp)
 
