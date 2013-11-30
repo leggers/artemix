@@ -43,8 +43,9 @@ class Transform < ActiveRecord::Base
     else
       crop_origin_x = self.image_x.abs if self.image_x < 0
       crop_width = self.width
+      self.image_x = 0
     end
-    puts "#{self.leg}, x: #{crop_origin_x}, width: #{crop_width}"
+    puts "leg: #{self.leg}, x: #{crop_origin_x}, width: #{crop_width}"
     image.crop!(crop_origin_x, 0, crop_width, self.height)
   end
 
