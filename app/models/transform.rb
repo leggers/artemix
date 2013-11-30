@@ -36,10 +36,6 @@ class Transform < ActiveRecord::Base
     self.rotation *= 180 / Math::PI
   end
 
-  def cropped_width
-    
-  end
-
   # For MVP, this method moves, resizes, composites, rotates (at your own risk!), and mirrors. Nothing else
   # Input: a Magick::ImageList
   # Output: a Magick::ImageList that represents the composite of the inputted image on top of the transformed image
@@ -51,8 +47,6 @@ class Transform < ActiveRecord::Base
 
     # image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(self.width, self.height)
-
-    # image.crop!(0, 0, self.cropped_width, self.height)
 
     # x_copies = (image[0].columns / template[0].columns).ceil
     # y_copies = (image[0].rows / template[0].rows).ceil
