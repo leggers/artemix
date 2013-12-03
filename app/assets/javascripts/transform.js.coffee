@@ -18,10 +18,17 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
-    r_context.fillStyle = '#AAAAAA'
-    r_context.fillRect(0, 0, c_width, c_height)
-    l_context.fillStyle = '#AAAAAA'
-    l_context.fillRect(0, 0, c_width, c_height)
+    r_model_context = $('#right_model_image')[0].getContext('2d')
+    r_model_context.translate(c_width * 2, 0)
+    r_model_context.scale(-1, 1)
+    l_model_context = $('#left_model_image')[0].getContext('2d')
+    l_model_context.translate(c_width * 2, 0)
+    l_model_context.scale(-1, 1)
+
+    r_model_context.fillStyle = '#AAAAAA'
+    r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
+    l_model_context.fillStyle = '#AAAAAA'
+    l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
 
     r_image = {
         origin: {
@@ -90,13 +97,17 @@ $ ->
     draw_right_image = ->
         if window.images.right != undefined
             r_context.clearRect(0, 0, c_width, c_height)
+            r_model_context.clearRect(0, 0, c_width * 2, c_height * 2)
             r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+            r_model_context.drawImage(window.images.right, r_image.origin.x * 2, r_image.origin.y * 2, r_image.width * 2, r_image.height * 2)
             window.paint_model()
 
     draw_left_image = ->
         if window.images.left != undefined
             l_context.clearRect(0, 0, c_width, c_height)
+            l_model_context.clearRect(0, 0, c_width * 2, c_height * 2)
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
+            l_model_context.drawImage(window.images.left, l_image.origin.x * 2, l_image.origin.y * 2, l_image.width * 2, l_image.height * 2)
             window.paint_model()
 
     move_right_image = (diffs) ->
