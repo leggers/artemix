@@ -27,8 +27,12 @@ $ ->
 
     r_model_context.fillStyle = '#AAAAAA'
     r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
+    r_context.fillStyle = '#AAAAAA'
+    r_context.fillRect(0, 0, c_width, c_height)
     l_model_context.fillStyle = '#AAAAAA'
     l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
+    l_context.fillStyle = '#AAAAAA'
+    l_context.fillRect(0, 0, c_width, c_height)
 
     r_image = {
         origin: {
