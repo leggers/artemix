@@ -138,31 +138,39 @@ $ ->
 
     mirror_image = ->
         left_image = window.ids.left != undefined
+        contexts = []
 
         if left_image
-            context = r_context
+            contexts.push(r_context)
+            contexts.push(r_model_context)
             image = window.images.left
             window.images.right = image
             r_image = $.extend(true, {}, l_image)
         else
-            context = l_context
+            contexts.push(l_context)
+            contexts.push(l_model_context)
             image = window.images.right
             window.images.left = image
             l_image = $.extend(true, {}, r_image)
 
         if $(this).is(':checked')
             mirrored = true
-            context.translate(c_width, 0)
-            context.scale(-1, 1)
+            contexts[0].translate(c_width, 0)
+            contexts[1].translate(c_width * 2, 0)
+            for context in contexts 
+                context.scale(-1, 1)
         else
             mirrored = false
             if left_image
                 window.images.right = undefined
             else
                 window.images.left = undefined
-            context.clearRect(0, 0, c_width, c_height)
-            context.scale(-1, 1)
-            context.translate(-c_width, 0)
+            contexts[0].clearRect(0, 0, c_width, c_height)
+            contexts[1].clearRect(0, 0, c_width * 2, c_height * 2)
+            for context in contexts
+                context.scale(-1, 1)
+            contexts[0].translate(-c_width, 0)
+            contexts[1].translate(-c_width * 2, 0)
 
         draw_left_image()
         draw_right_image()
