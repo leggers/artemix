@@ -10,6 +10,14 @@ $wp: relative;
 $wh: 660px;
 $ww: 300px;
 
+#left_model_image {
+    display: none;
+}
+
+#right_model_image {
+    display: none;
+}
+
 .left_wrapper {
     position: $wp;
     height: $wh + 2 * $ll;

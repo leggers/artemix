@@ -88,14 +88,16 @@ $ ->
 
 
     draw_right_image = ->
-        r_context.clearRect(0, 0, c_width, c_height)
         if window.images.right != undefined
+            r_context.clearRect(0, 0, c_width, c_height)
             r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
+            window.paint_model()
 
     draw_left_image = ->
-        l_context.clearRect(0, 0, c_width, c_height)
         if window.images.left != undefined
+            l_context.clearRect(0, 0, c_width, c_height)
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
+            window.paint_model()
 
     move_right_image = (diffs) ->
         r_image.origin.x -= diffs[0]
@@ -316,6 +318,8 @@ $ ->
 
         img.onload = ->
             context.drawImage(img, 0, 0, c_width, c_height)
+            draw_right_image()
+            draw_left_image()
 
         img.src = source
         window.images[leg] = img

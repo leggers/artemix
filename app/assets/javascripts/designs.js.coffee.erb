@@ -49,7 +49,8 @@ $ ->
         console.log(mesh)
         model = mesh
         window.mesh = mesh
-        render_loop()
+        window.paint_model()
+        window.render()
     )
 
     callbacks = {
@@ -88,6 +89,8 @@ $ ->
             RADIUS -= diffs[1]
 
             camera.lookAt(new THREE.Vector3(0,0,0))
+
+            window.render()
     }
 
     $canvas.mousedown(callbacks.mousedown)
@@ -98,10 +101,12 @@ $ ->
 
     render_loop = ->
         requestAnimationFrame(render_loop)
-        paint_model()
+        window.render()
+
+    window.render = ->
         renderer.render(scene, camera)
 
-    paint_model = ->
+    window.paint_model = ->
         left_leg_image = get_left_leg_image()
         left_leg_texture = new THREE.Texture(left_leg_image)
         right_leg_image = get_right_leg_image()
@@ -112,6 +117,7 @@ $ ->
         right_leg_material = model.material.materials[1]
         left_leg_material.map = left_leg_texture
         right_leg_material.map = right_leg_texture
+        window.render()
 
     get_left_leg_image = ->
         $('#left_leg')[0]
