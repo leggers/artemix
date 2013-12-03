@@ -2,10 +2,12 @@
     <div class='field'>
         <%= f.label :name, "Design name (max. 24 characters)" %>
         <%= f.text_field :name %>
+        <span style='color: red;'>Must be present</span>
     </div>
     <div class='field'>
         <%= f.label :designer, "Design by (max. 40 characters)" %>
         <%= f.text_field :designer %>
+        <span style='color: red;'>Must be present</span>
     </div>
     <div class='field'>
         <%= f.label :contact, "Phone number or email address to contact you" %>

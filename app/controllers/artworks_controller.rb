@@ -1,5 +1,6 @@
 class ArtworksController < ApplicationController
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
+  helper ApplicationHelper
 
   # GET /artworks
   # GET /artworks.json
