@@ -11,6 +11,9 @@ $ ->
     mouse_y = 0
     mirrored = false
 
+    r_image = null
+    l_image = null
+
     rcanvas = $("#right_leg")[0]
     c_width = rcanvas.width
     c_height = rcanvas.height
@@ -34,23 +37,28 @@ $ ->
     l_context.fillStyle = '#AAAAAA'
     l_context.fillRect(0, 0, c_width, c_height)
 
-    r_image = {
-        origin: {
-            x: 0,
-            y: 0
-        },
-        width: c_width,
-        height: c_height
-    }
+    right_image_origin = ->
+        r_image = {
+            origin: {
+                x: 0,
+                y: 0
+            },
+            width: c_width,
+            height: c_height
+        }
 
-    l_image = {
-        origin: {
-            x: 0,
-            y: 0
-        },
-        width: c_width,
-        height: c_height
-    }
+    left_image_origin = ->
+        l_image = {
+            origin: {
+                x: 0,
+                y: 0
+            },
+            width: c_width,
+            height: c_height
+        }
+
+    right_image_origin()
+    left_image_origin()
 
     bind_listeners = ->
         $('#left_cover_canvas').mousedown(left_down)
@@ -147,17 +155,17 @@ $ ->
         if left_image
             contexts.push(r_context)
             contexts.push(r_model_context)
-            image = window.images.left
-            window.images.right = image
-            r_image = $.extend(true, {}, l_image)
         else
             contexts.push(l_context)
             contexts.push(l_model_context)
-            image = window.images.right
-            window.images.left = image
-            l_image = $.extend(true, {}, r_image)
 
-        if $(this).is(':checked')
+        if $('#mirror').is(':checked')
+            if left_image
+                window.images.right = window.images.left
+                r_image = $.extend(true, {}, l_image)
+            else
+                window.images.left = window.images.right
+                l_image = $.extend(true, {}, r_image)
             mirrored = true
             contexts[0].translate(c_width, 0)
             contexts[1].translate(c_width * 2, 0)
@@ -347,6 +355,8 @@ $ ->
         canvas = $("##{leg}_leg")[0]
         context = canvas.getContext('2d')
         img = new Image()
+
+        if leg == 'left' then left_image_origin() else right_image_origin()
 
         img.onload = ->
             draw_right_image()
