@@ -169,8 +169,8 @@ $ ->
                 window.images.right = undefined
             else
                 window.images.left = undefined
-            contexts[0].clearRect(0, 0, c_width, c_height)
-            contexts[1].clearRect(0, 0, c_width * 2, c_height * 2)
+            contexts[0].fillRect(0, 0, c_width, c_height)
+            contexts[1].fillRect(0, 0, c_width * 2, c_height * 2)
             for context in contexts
                 context.scale(-1, 1)
             contexts[0].translate(-c_width, 0)
@@ -319,7 +319,7 @@ $ ->
         context.rotate(angle)
 
     bind_listeners()
-    create_sliders()
+    # create_sliders()
 
     have_two_images = ->
         window.ids.left != undefined && window.ids.right != undefined
@@ -334,13 +334,21 @@ $ ->
         $("##{leg}_height").show()
 
     window.add_leg = (leg, source) ->
+        # remove option from dropdown and enable/disable mirroring
+        $("#leg option[value='#{leg}']").remove()
+        $('#mirror_option').show()
+        if have_two_images()
+            $('#mirror_option').hide()
+            $('#mirror').prop('checked', false)
+            mirror_image() if mirrored
+            $('#new_artwork').slideUp()
+
         # add image to canvas
         canvas = $("##{leg}_leg")[0]
         context = canvas.getContext('2d')
         img = new Image()
 
         img.onload = ->
-            context.drawImage(img, 0, 0, c_width, c_height)
             draw_right_image()
             draw_left_image()
 
@@ -349,15 +357,6 @@ $ ->
 
         clear_artwork_info()
         show_resize_sliders(leg)
-
-        # remove option from dropdown and show mirror checkbox
-        $("#leg option[value='#{leg}']").remove()
-        $('#mirror_option').show()
-        if have_two_images()
-            $('#mirror_option').hide()
-            $('#mirror').prop('checked', false)
-            mirror_image() if mirrored
-            $('#new_artwork').slideUp()
 
 
     fill_in_form = (form, data) ->
