@@ -175,8 +175,10 @@ $ ->
             mirrored = false
             if left_image
                 window.images.right = undefined
+                right_image_origin()
             else
                 window.images.left = undefined
+                left_image_origin()
             contexts[0].fillRect(0, 0, c_width, c_height)
             contexts[1].fillRect(0, 0, c_width * 2, c_height * 2)
             for context in contexts
@@ -355,8 +357,6 @@ $ ->
         canvas = $("##{leg}_leg")[0]
         context = canvas.getContext('2d')
         img = new Image()
-
-        if leg == 'left' then left_image_origin() else right_image_origin()
 
         img.onload = ->
             draw_right_image()
