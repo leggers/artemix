@@ -149,7 +149,7 @@ $ ->
             move_left_image(diffs)
 
     mirror_image = ->
-        left_image = window.ids.left != undefined
+        left_image = window.original_leg == 'left'
         contexts = []
 
         if left_image
@@ -160,13 +160,13 @@ $ ->
             contexts.push(l_model_context)
 
         if $('#mirror').is(':checked')
+            mirrored = true
             if left_image
                 window.images.right = window.images.left
                 r_image = $.extend(true, {}, l_image)
             else
                 window.images.left = window.images.right
                 l_image = $.extend(true, {}, r_image)
-            mirrored = true
             contexts[0].translate(c_width, 0)
             contexts[1].translate(c_width * 2, 0)
             for context in contexts 
