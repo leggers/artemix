@@ -329,7 +329,7 @@ $ ->
         context.rotate(angle)
 
     bind_listeners()
-    # create_sliders()
+    create_sliders()
 
     have_two_images = ->
         window.ids.left != undefined && window.ids.right != undefined
