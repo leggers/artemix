@@ -36,8 +36,6 @@ $ ->
     loading_manager.onProgress = (item, loaded, total) ->
         console.log(item, loaded, total)
 
-    texture = THREE.ImageUtils.loadTexture("<%= asset_path 'rocket.jpg' %>")
-
     model_loader = new THREE.JSONLoader(loading_manager)
     model_loader.load( "<%= asset_path 'leggings.js' %>", (geometry, materials) ->
         for material in materials
