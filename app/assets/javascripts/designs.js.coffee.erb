@@ -111,10 +111,12 @@ $ ->
         right_leg_texture = new THREE.Texture(right_leg_image)
         left_leg_texture.needsUpdate = true
         right_leg_texture.needsUpdate = true
-        left_leg_material = model.material.materials[1]
-        right_leg_material = model.material.materials[4]
-        right_leg_material2 = model.material.materials[2]
+        left_leg_material = model.material.materials[6]
+        left_leg_material2 = model.material.materials[9]
+        right_leg_material = model.material.materials[8]
+        right_leg_material2 = model.material.materials[11]
         left_leg_material.map = left_leg_texture
+        left_leg_material2.map = left_leg_texture
         right_leg_material.map = right_leg_texture
         right_leg_material2.map = right_leg_texture
         window.render()

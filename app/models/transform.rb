@@ -38,12 +38,11 @@ class Transform < ActiveRecord::Base
 
   def crop_image!(image, center_x)
     if self.leg == 'left'
-      crop_origin_x = 0
+      crop_origin_x = self.image_x
       crop_width = center_x - self.image_x
     else
-      crop_origin_x = self.image_x.abs if self.image_x < 0
+      crop_origin_x = self.image_x < 0 ? self.image_x.abs : 0
       crop_width = self.width
-      self.image_x = 0
     end
     puts "leg: #{self.leg}, x: #{crop_origin_x}, width: #{crop_width}"
     image.crop!(crop_origin_x, 0, crop_width, self.height)
@@ -58,7 +57,7 @@ class Transform < ActiveRecord::Base
 
     image = Magick::ImageList.new(self.artwork.image.path)
 
-    # image[0].rotate!(rotation) unless rotation.nil?
+    image[0].rotate!(rotation) unless rotation.nil?
     image.resize!(self.width, self.height)
 
     center_x = template_image.columns / 2
