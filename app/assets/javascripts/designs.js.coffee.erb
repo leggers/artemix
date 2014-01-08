@@ -37,7 +37,7 @@ $ ->
         console.log(item, loaded, total)
 
     model_loader = new THREE.JSONLoader(loading_manager)
-    model_loader.load( "<%= asset_path 'a3_leggings.js' %>", (geometry, materials) ->
+    model_loader.load( "<%= asset_path 'a6_leggings.js' %>", (geometry, materials) ->
         for material in materials
             material.ambient.setHex(0xffffff)
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
@@ -111,10 +111,10 @@ $ ->
         right_leg_texture = new THREE.Texture(right_leg_image)
         left_leg_texture.needsUpdate = true
         right_leg_texture.needsUpdate = true
-        left_leg_material = model.material.materials[6]
-        left_leg_material2 = model.material.materials[9]
-        right_leg_material = model.material.materials[8]
-        right_leg_material2 = model.material.materials[11]
+        left_leg_material = model.material.materials[2]
+        left_leg_material2 = model.material.materials[3]
+        right_leg_material = model.material.materials[0]
+        right_leg_material2 = model.material.materials[1]
         left_leg_material.map = left_leg_texture
         left_leg_material2.map = left_leg_texture
         right_leg_material.map = right_leg_texture
@@ -122,7 +122,7 @@ $ ->
         window.render()
 
     get_left_leg_image = ->
-        $('#left_model_image')[0]
+        $('#left_leg')[0]
 
     get_right_leg_image = ->
-        $('#right_model_image')[0]
+        $('#right_leg')[0]
