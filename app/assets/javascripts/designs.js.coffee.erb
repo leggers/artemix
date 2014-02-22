@@ -37,7 +37,7 @@ $ ->
         console.log(item, loaded, total)
 
     model_loader = new THREE.JSONLoader(loading_manager)
-    model_loader.load( "<%= asset_path 'ax6_leggings.js' %>", (geometry, materials) ->
+    model_loader.load( "<%= asset_path 'ax9_leggings.js' %>", (geometry, materials) ->
         for material in materials
             material.ambient.setHex(0xffffff)
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
