@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20131122201038) do
 
   create_table "artworks", force: true do |t|
-    t.boolean  "locked",             default: false
+    t.boolean  "locked"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
