@@ -120,10 +120,12 @@ $ ->
         window.render()
 
     get_left_leg_material = ->
-        get_material_with_name 'lambert3SG'
+        to_return = get_material_with_name 'lambert3SG'
+        to_return = to_return || model.material.materials[1]
 
     get_right_leg_material = ->
-        get_material_with_name 'lambert4SG'
+        to_return = get_material_with_name 'lambert4SG'
+        to_return = to_return || model.material.materials[0]
 
     get_material_with_name = (name) ->
         for material in mesh.material.materials
