@@ -12,8 +12,9 @@ $ ->
     ASPECT_RATIO = MODEL_VIEW_WIDTH / MODEL_VIEW_HEIGHT
     NEAR_DIST = 0.1
     FAR_DIST = 1000
-    RADIUS = 300
-    LOCATION_ANGLE = 0
+    CAMERA_DIST = 500
+    CAMERA_HEIGHT = 100
+    MODEL_ANGLE = Math.PI/2;
 
     mouse_down = false
     mouse_x = 0
@@ -25,9 +26,9 @@ $ ->
     scene = new THREE.Scene()
 
     scene.add(camera)
-    camera.position.x = RADIUS * Math.sin(LOCATION_ANGLE)
-    camera.position.y = 0
-    camera.position.z = RADIUS * Math.cos(LOCATION_ANGLE)
+    camera.position.x = 0
+    camera.position.y = CAMERA_HEIGHT
+    camera.position.z = CAMERA_DIST
     renderer.setSize(MODEL_VIEW_WIDTH, MODEL_VIEW_HEIGHT)
     $canvas.append(renderer.domElement)
     scene.add(new THREE.AmbientLight(0x404040))
@@ -49,7 +50,7 @@ $ ->
         mesh.scale.set(2.3, 2.3, 2.3)
         # the model is oriented with the y-axis pointing toward the top of the screen
         mesh.position.set(0, -140, 0)
-        mesh.rotation.y = Math.PI/2;
+        mesh.rotation.y = MODEL_ANGLE;
         scene.add(mesh)
         console.log(mesh)
         model = mesh
@@ -85,13 +86,13 @@ $ ->
         mousemove: (event) ->
             diffs = callbacks.get_diffs(event)
 
-            # ROTATE around axis
-            LOCATION_ANGLE += diffs[0] / 100
-            camera.position.x = RADIUS * Math.sin(LOCATION_ANGLE)
-            camera.position.z = RADIUS * Math.cos(LOCATION_ANGLE)
+            # rotate model
+            MODEL_ANGLE -= diffs[0] / 100
+            mesh.rotation.y = MODEL_ANGLE;
 
-            # ZOOM in or out
-            RADIUS -= diffs[1]
+            # move camera in or out
+            CAMERA_DIST -= diffs[1]
+            camera.position.z = CAMERA_DIST;
 
             camera.lookAt(new THREE.Vector3(0,0,0))
 
