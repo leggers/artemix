@@ -33,7 +33,7 @@ $ ->
     scene.add(new THREE.AmbientLight(0x404040))
 
     pointLight = new THREE.PointLight(0xffffff, 1, 0)
-    pointLight.position.set(-200, 500, -500)
+    pointLight.position.set(200, 500, 500)
     scene.add(pointLight)
 
     loading_manager = new THREE.LoadingManager()
@@ -44,10 +44,12 @@ $ ->
     model_loader.load( "<%= asset_path 'widelegLonghair5.js' %>", (geometry, materials) ->
         for material in materials
             material.ambient.setHex(0xffffff)
+            material.color.setHex(0xffffff)
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
         mesh.scale.set(2.3, 2.3, 2.3)
         # the model is oriented with the y-axis pointing toward the top of the screen
         mesh.position.set(0, -140, 0)
+        mesh.rotation.y = Math.PI/2;
         scene.add(mesh)
         console.log(mesh)
         model = mesh
@@ -125,11 +127,11 @@ $ ->
         window.render()
 
     get_left_leg_material = ->
-        to_return = get_material_with_name 'lambert3SG'
+        to_return = get_material_with_name 'left_leg'
         to_return = to_return || model.material.materials[1]
 
     get_right_leg_material = ->
-        to_return = get_material_with_name 'lambert4SG'
+        to_return = get_material_with_name 'right_leg'
         to_return = to_return || model.material.materials[0]
 
     get_material_with_name = (name) ->
