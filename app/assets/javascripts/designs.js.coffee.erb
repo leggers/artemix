@@ -13,24 +13,24 @@ $ ->
     NEAR_DIST = 0.1
     FAR_DIST = 1000
     CAMERA_DIST = 500
-    CAMERA_HEIGHT = 100
-    MODEL_ANGLE = Math.PI/2;
 
     mouse_down = false
     mouse_x = 0
     mouse_y = 0
+    mouse_in = false
 
-    $canvas = $('.model') # 3d canvas
+    $surrounding_div = $('.model') # 3d canvas
     renderer = new THREE.WebGLRenderer()
     camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT_RATIO, NEAR_DIST, FAR_DIST )
     scene = new THREE.Scene()
 
     scene.add(camera)
     camera.position.x = 0
-    camera.position.y = CAMERA_HEIGHT
+    camera.position.y = 100
     camera.position.z = CAMERA_DIST
     renderer.setSize(MODEL_VIEW_WIDTH, MODEL_VIEW_HEIGHT)
-    $canvas.append(renderer.domElement)
+    $surrounding_div.append(renderer.domElement)
+    $canvas = $('.model canvas')
     scene.add(new THREE.AmbientLight(0x404040))
 
     pointLight = new THREE.PointLight(0xffffff, 1, 0)
@@ -49,8 +49,8 @@ $ ->
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
         mesh.scale.set(2.3, 2.3, 2.3)
         # the model is oriented with the y-axis pointing toward the top of the screen
-        mesh.position.set(0, -140, 0)
-        mesh.rotation.y = MODEL_ANGLE;
+        mesh.position.set(0, -190, 0)
+        mesh.rotation.y = Math.PI/2
         scene.add(mesh)
         console.log(mesh)
         model = mesh
@@ -60,7 +60,13 @@ $ ->
     )
 
     callbacks = {
-        mousedown: (event) ->
+        mousein: ->
+            mouse_in = true
+
+        mouseout: ->
+            mouse_in = false
+
+        mousedown: ->
             mouse_down = true
 
         mouseup: ->
@@ -68,10 +74,23 @@ $ ->
             mouse_x = 0
             mouse_y = 0
 
+        scroll: (event) ->
+            if mouse_in
+                event.preventDefault()
+
+                CAMERA_DIST += event.originalEvent.wheelDeltaY
+                camera.position.z = CAMERA_DIST
+                camera.lookAt(new THREE.Vector3(0,0,0))
+
+                window.mesh.rotation.y += event.originalEvent.wheelDeltaX / 150
+
+                window.render()
+
         get_diffs: (event) ->
             diffs = [0, 0]
 
             if mouse_down
+                console.log('mousedown')
                 mouse_x = event.pageX if mouse_x == 0
                 mouse_y = event.pageY if mouse_y == 0
 
@@ -87,21 +106,23 @@ $ ->
             diffs = callbacks.get_diffs(event)
 
             # rotate model
-            MODEL_ANGLE -= diffs[0] / 100
-            mesh.rotation.y = MODEL_ANGLE;
+            window.mesh.rotation.y -= diffs[0] / 100
 
             # move camera in or out
             CAMERA_DIST -= diffs[1]
-            camera.position.z = CAMERA_DIST;
+            camera.position.z = CAMERA_DIST
 
             camera.lookAt(new THREE.Vector3(0,0,0))
 
             window.render()
     }
 
-    $canvas.mousedown(callbacks.mousedown)
-    $canvas.mousemove(callbacks.mousemove)
-    $canvas.mouseup(callbacks.mouseup)
+    $surrounding_div.mousedown(callbacks.mousedown)
+    $surrounding_div.mousemove(callbacks.mousemove)
+    $surrounding_div.mouseup(callbacks.mouseup)
+    $canvas.mouseenter(callbacks.mousein)
+    $canvas.mouseleave(callbacks.mouseout)
+    $(window).bind('mousewheel', callbacks.scroll)
 
     camera.lookAt(new THREE.Vector3(0,0,0))
 
