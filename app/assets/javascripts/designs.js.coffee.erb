@@ -13,6 +13,7 @@ $ ->
     NEAR_DIST = 0.1
     FAR_DIST = 1000
     CAMERA_DIST = 500
+    CAMERA_HEIGHT = 0
 
     mouse_down = false
     mouse_x = 0
@@ -26,7 +27,7 @@ $ ->
 
     scene.add(camera)
     camera.position.x = 0
-    camera.position.y = 100
+    camera.position.y = CAMERA_HEIGHT
     camera.position.z = CAMERA_DIST
     renderer.setSize(MODEL_VIEW_WIDTH, MODEL_VIEW_HEIGHT)
     $surrounding_div.append(renderer.domElement)
@@ -79,8 +80,10 @@ $ ->
                 event.preventDefault()
 
                 CAMERA_DIST += event.originalEvent.wheelDeltaY
+                min_distance = 100
+                CAMERA_DIST = min_distance if CAMERA_DIST < min_distance
                 camera.position.z = CAMERA_DIST
-                camera.lookAt(new THREE.Vector3(0,0,0))
+                camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
                 window.mesh.rotation.y += event.originalEvent.wheelDeltaX / 150
 
@@ -109,10 +112,10 @@ $ ->
             window.mesh.rotation.y -= diffs[0] / 100
 
             # move camera in or out
-            CAMERA_DIST -= diffs[1]
-            camera.position.z = CAMERA_DIST
+            CAMERA_HEIGHT -= diffs[1]
+            camera.position.y = CAMERA_HEIGHT
 
-            camera.lookAt(new THREE.Vector3(0,0,0))
+            camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
             window.render()
     }
@@ -124,7 +127,7 @@ $ ->
     $canvas.mouseleave(callbacks.mouseout)
     $(window).bind('mousewheel', callbacks.scroll)
 
-    camera.lookAt(new THREE.Vector3(0,0,0))
+    camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
     render_loop = ->
         requestAnimationFrame(render_loop)
