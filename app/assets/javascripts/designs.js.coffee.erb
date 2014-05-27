@@ -82,6 +82,9 @@ $ ->
                 CAMERA_DIST += event.originalEvent.wheelDeltaY
                 min_distance = 100
                 CAMERA_DIST = min_distance if CAMERA_DIST < min_distance
+                max_distance = 900
+                CAMERA_DIST = max_distance if CAMERA_DIST > max_distance
+
                 camera.position.z = CAMERA_DIST
                 camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
