@@ -46,7 +46,7 @@ $ ->
     room = new THREE.Mesh(room_geom, stone)
     window.room = room
     room.position.z = -1000
-    scene.add(room)
+    # scene.add(room)
 
     loading_manager = new THREE.LoadingManager()
     loading_manager.onProgress = (item, loaded, total) ->
@@ -90,7 +90,7 @@ $ ->
                 event.preventDefault()
 
                 CAMERA_DIST += event.originalEvent.wheelDeltaY
-                # check_camera_dist()
+                check_camera_dist()
 
                 camera.position.z = CAMERA_DIST
                 camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
