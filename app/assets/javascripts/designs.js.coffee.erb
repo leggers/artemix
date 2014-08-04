@@ -160,8 +160,6 @@ $ ->
         right_leg_texture.needsUpdate = true
         left_leg_material = left_leg_material || get_left_leg_material()
         right_leg_material = right_leg_material || get_right_leg_material()
-        console.log(left_leg_material)
-        console.log(right_leg_material)
         left_leg_material.map = left_leg_texture
         right_leg_material.map = right_leg_texture
         window.render()
@@ -180,7 +178,7 @@ $ ->
                 return material
 
     get_left_leg_image = ->
-        $('#left_leg')[0]
+        $('#left_model_image')[0]
 
     get_right_leg_image = ->
-        $('#right_leg')[0]
+        $('#right_model_image')[0]

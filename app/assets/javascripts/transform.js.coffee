@@ -169,7 +169,7 @@ $ ->
                 l_image = $.extend(true, {}, r_image)
             contexts[0].translate(c_width, 0)
             contexts[1].translate(c_width * 2, 0)
-            for context in contexts 
+            for context in contexts
                 context.scale(-1, 1)
         else
             mirrored = false

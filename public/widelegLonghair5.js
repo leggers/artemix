@@ -64,7 +64,7 @@
                 "mapDiffuse" : "black.jpg",
                 "mapDiffuseWrap" : ["repeat", "repeat"],
 		"shading" : "Lambert",
-		"specularCoef" : 1,
+		"specularCoef" : 7,
 		"transparency" : 0.0,
 		"transparent" : true,
 		"vertexColors" : false
@@ -88,10 +88,10 @@
 	},
 
 	{
-		"body_part": "right leg",
+		"body_part": "left leg",
 		"DbgColor" : 60928,
 		"DbgIndex" : 2,
-		"DbgName" : "right_leg",
+		"DbgName" : "left_leg",
 		"blending" : "NormalBlending",
 		"depthTest" : true,
 		"depthWrite" : true,
@@ -122,10 +122,10 @@
 	},
 
 	{
-		"body_part": "left leg",
+		"body_part": "right leg",
 		"DbgColor" : 61166,
 		"DbgIndex" : 5,
-		"DbgName" : "left_leg",
+		"DbgName" : "right_leg",
 		"blending" : "NormalBlending",
 		"depthTest" : true,
 		"depthWrite" : true,
