@@ -1,20 +1,11 @@
-<h1>Bombsheller</h1>
-<h3>Customize your legs!</h3>
-
-<%= render :partial => 'artworks/form' %>
-
-<div id='mirror_option' style='display: none;'>
-    Mirror image: <%= check_box_tag 'mirror' %>
-</div>
-</br>
-<h2>Position, resize, and mirror image on leggings</h2>
+<h2>Preview Your Bombsheller Design</h2>
 
 <div class='instructions'>
     <h2>Instructions</h2>
     <div class='step'>1. Toggle the view mode to off on the "Design Info" and "Guides" Layers.</div>
     <div class='step'>2. File -> Save for Web...</div>
-    <div class='step'>Save as "Very High" quality JPEG. (Quality: 80%)</div>
-    <div class='step'>4. Make sure "Clip to Artboard" is check on!</div>
+    <div class='step'>3. Make sure "Clip to Artboard" is check on!</div>
+    <div class='step'>4. Save as "Very High" quality JPEG. (Quality: 80%)</div>
 </div>
 
 <canvas id='left_model_image' width='600' height='1320'></canvas>
@@ -38,9 +29,6 @@
 </div>
 
 <div class='model'></div>
-
-<h2>Name your design</h2>
-<%= render :partial => 'form' %>
 
 <%= render :partial => 'transforms/left_form' %>
 <%= render :partial => 'transforms/right_form' %>
