@@ -100,6 +100,19 @@ $ww: 300px;
     }
 }
 
+.drop-encourage {
+    position: absolute;
+    height: 85%;
+    width: 100%;
+    background-color: rgba(200, 200, 200, .5);
+    top: 0;
+    left: 0;
+    font-size: 50px;
+    text-align: center;
+    padding-top: 10%;
+    display: none;
+}
+
 // .model {
 //     position: $wp;
 //     left: 2 * $ww + 100;

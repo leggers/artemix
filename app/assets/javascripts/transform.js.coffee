@@ -71,8 +71,10 @@ $ ->
 
         $('#mirror').change(mirror_image)
 
+        $('body').on('dragenter', encourage_drop)
+        $('body .drop-encourage').on('dragleave', hide_encourage_drop)
+
     mouse_up = () ->
-        console.log('up')
         mouse_x = 0
         mouse_y = 0
 
@@ -104,6 +106,15 @@ $ ->
         mouse_y = event.pageY
 
         diffs
+
+    encourage_drop = (event) ->
+        $('.drop-encourage').show()
+
+    hide_encourage_drop = (event) ->
+        $('.drop-encourage').hide()
+
+    file_drop = (event) ->
+        return
 
 
     draw_right_image = ->
@@ -382,7 +393,6 @@ $ ->
         form.submit()
 
     window.design_created = (design_id) ->
-        console.log('design created')
         if window.ids.right != undefined
             right = $('#right_transform')
             r_image.leg = "right"
