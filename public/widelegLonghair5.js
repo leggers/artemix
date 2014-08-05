@@ -61,12 +61,11 @@
 		"blending" : "NormalBlending",
 		"depthTest" : true,
 		"depthWrite" : true,
-                "mapDiffuse" : "black.jpg",
                 "mapDiffuseWrap" : ["repeat", "repeat"],
 		"shading" : "Lambert",
-		"specularCoef" : 7,
-		"transparency" : 0.0,
-		"transparent" : true,
+		"specularCoef" : 1,
+		"transparency" : 0.5,
+		"transparent" : false,
 		"vertexColors" : false
 	},
 
