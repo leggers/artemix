@@ -101,8 +101,14 @@ $ww: 300px;
 }
 
 .file-upload {
-    height: 30px;
-    background-color: rgb(150, 150, 150);
+    width: 500px;
+    background-color: #ed4faf;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.file-upload input {
+    margin-top: 15px;
 }
 
 // .drop-encourage {

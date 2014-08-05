@@ -28,13 +28,13 @@ $ ->
     l_model_context.translate(c_width * 2, 0)
     l_model_context.scale(-1, 1)
 
-    r_model_context.fillStyle = '#AAAAAA'
+    r_model_context.fillStyle = '#ed4faf'
     r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-    r_context.fillStyle = '#AAAAAA'
+    r_context.fillStyle = '#ed4faf'
     r_context.fillRect(0, 0, c_width, c_height)
-    l_model_context.fillStyle = '#AAAAAA'
+    l_model_context.fillStyle = '#ed4faf'
     l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-    l_context.fillStyle = '#AAAAAA'
+    l_context.fillStyle = '#ed4faf'
     l_context.fillRect(0, 0, c_width, c_height)
 
     right_image_origin = ->
@@ -233,7 +233,7 @@ $ ->
             orientation: 'vertical',
             min: 0,
             max: c_height * 2,
-            value: c_height,
+            value: c_height + 160,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
@@ -256,7 +256,7 @@ $ ->
             orientation: 'vertical',
             min: 0,
             max: c_height * 2,
-            value: c_height,
+            value: c_height + 160,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
