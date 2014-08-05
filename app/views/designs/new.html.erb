@@ -6,7 +6,12 @@
     <div class='step'>2. File -> Save for Web...</div>
     <div class='step'>3. Make sure "Clip to Artboard" is check on!</div>
     <div class='step'>4. Save as "Very High" quality JPEG. (Quality: 80%)</div>
-    <div class='step'>5. Drag and drop the exported image anywhere on this page!</div>
+    <div class='step'>5. Use the input or drag and drop your design below!</div>
+</div>
+
+<div class='file-upload'>
+    Drop design here! Or use input below.
+    <input type='file' id='design-image' name='files[]' multiple />
 </div>
 
 <canvas id='left_model_image' width='600' height='1320'></canvas>
@@ -33,5 +38,3 @@
 
 <%= render :partial => 'transforms/left_form' %>
 <%= render :partial => 'transforms/right_form' %>
-
-<div class='drop-encourage'>Drop Your Design!</div>

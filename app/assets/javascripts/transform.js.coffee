@@ -71,8 +71,9 @@ $ ->
 
         $('#mirror').change(mirror_image)
 
-        $('body').on('dragenter', encourage_drop)
-        $('body .drop-encourage').on('dragleave', hide_encourage_drop)
+        $('.file-upload').on('dragover', dragover_handler)
+        $('.file-upload').on('drop', file_drop)
+        $('input#design-image').on('change', file_button)
 
     mouse_up = () ->
         mouse_x = 0
@@ -107,15 +108,28 @@ $ ->
 
         diffs
 
-    encourage_drop = (event) ->
-        $('.drop-encourage').show()
-
-    hide_encourage_drop = (event) ->
-        $('.drop-encourage').hide()
+    dragover_handler = (event) ->
+        event.stopPropagation()
+        event.preventDefault()
 
     file_drop = (event) ->
-        return
+        event.stopPropagation()
+        event.preventDefault()
+        file_handler(event.originalEvent.dataTransfer.files[0])
 
+    file_button = (event) ->
+        file_handler(event.target.files[0])
+
+    file_handler = (file) ->
+        img = new Image()
+        reader = new FileReader()
+
+        reader.onload = (theFile) ->
+            img.src = theFile.target.result
+            window.images.left = img
+            draw_left_image()
+
+        reader.readAsDataURL(file)
 
     draw_right_image = ->
         if window.images.right != undefined

@@ -100,18 +100,23 @@ $ww: 300px;
     }
 }
 
-.drop-encourage {
-    position: absolute;
-    height: 85%;
-    width: 100%;
-    background-color: rgba(200, 200, 200, .5);
-    top: 0;
-    left: 0;
-    font-size: 50px;
-    text-align: center;
-    padding-top: 10%;
-    display: none;
+.file-upload {
+    height: 30px;
+    background-color: rgb(150, 150, 150);
 }
+
+// .drop-encourage {
+//     position: absolute;
+//     height: 85%;
+//     width: 100%;
+//     background-color: rgba(200, 200, 200, .5);
+//     top: 0;
+//     left: 0;
+//     font-size: 50px;
+//     text-align: center;
+//     padding-top: 10%;
+//     display: none;
+// }
 
 // .model {
 //     position: $wp;
