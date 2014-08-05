@@ -107,10 +107,28 @@ $ww: 300px;
     background-color: #ed4faf;
     font-size: 20px;
     padding: 5px;
+    margin-bottom: 15px;
+
+    input {
+        margin-top: 15px;
+    }
+
+    .loading {
+        display: none;
+    }
 }
 
-.file-upload input {
-    margin-top: 15px;
+.reveal-template {
+    font-size: 15px;
+    float: left;
+    width: 250px;
+    margin-left: 15px;
+    background-color: #333333;
+}
+
+.model {
+    float: left;
+    width: 330px;
 }
 
 // .drop-encourage {

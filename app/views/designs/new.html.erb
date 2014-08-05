@@ -10,10 +10,17 @@
 </div>
 <br>
 <div class='file-upload'>
-    Drop design here! Or use button below.
-    <br>
-    <input type='file' id='design-image' name='files[]' multiple />
+    <div class='drop-here'>
+        Drop design here! Or use button below.
+        <br>
+        <input type='file' id='design-image' name='files[]' multiple />
+    </div>
+    <div class='loading'>
+        Loading...
+    </div>
 </div>
+
+<div class='model'></div>
 
 <canvas id='left_model_image' width='600' height='1320'></canvas>
 <div class='left_wrapper'>
@@ -35,7 +42,10 @@
     <div id='right_width'></div>
 </div>
 
-<div class='model'></div>
+<div class='reveal-template'>
+    Want to make some tweaks to your design directly in this page?
+    Click this box to show/hide our experimental in-browser editor.
+</div>
 
 <%= render :partial => 'transforms/left_form' %>
 <%= render :partial => 'transforms/right_form' %>

@@ -75,6 +75,8 @@ $ ->
         $('.file-upload').on('drop', file_drop)
         $('input#design-image').on('change', file_button)
 
+        $('.reveal-template').on('click', toggle_canvases)
+
     mouse_up = () ->
         mouse_x = 0
         mouse_y = 0
@@ -121,10 +123,14 @@ $ ->
         file_handler(event.target.files[0])
 
     file_handler = (file) ->
+        $('.drop-here').hide()
+        $('.loading').show()
         img = new Image()
         reader = new FileReader()
 
         reader.onload = (theFile) ->
+            $('.loading').hide()
+            $('.drop-here').show()
             img.src = theFile.target.result
             window.images.left = img
             window.images.right = img
@@ -144,6 +150,17 @@ $ ->
             show_resize_sliders("right")
 
         reader.readAsDataURL(file)
+
+    toggle_canvases = (event) ->
+        l_div = $('.left_wrapper')
+        r_div = $('.right_wrapper')
+
+        if l_div.is(":visible")
+            l_div.hide()
+            r_div.hide()
+        else
+            l_div.show()
+            r_div.show()
 
     draw_right_image = ->
         if window.images.right != undefined
