@@ -127,7 +127,21 @@ $ ->
         reader.onload = (theFile) ->
             img.src = theFile.target.result
             window.images.left = img
+            window.images.right = img
+            r_image.origin.x = -c_width
+            height = c_height + 160
+            width = c_width * 2
+            y = -40
+            r_image.origin.y = y
+            r_image.width = width
+            r_image.height = height
+            l_image.width = width
+            l_image.height = height
+            l_image.origin.y = y
             draw_left_image()
+            draw_right_image()
+            show_resize_sliders("left")
+            show_resize_sliders("right")
 
         reader.readAsDataURL(file)
 
@@ -229,10 +243,10 @@ $ ->
         })
         $('#left_width').slider({
             min: 0,
-            max: c_width * 2,
-            value: c_width,
+            max: c_width * 4,
+            value: c_width * 2,
             start: (event, ui) ->
-                $(this).data('most_recent_value', ui.value)
+                update_slider_value($(this), ui)
             slide: (event, ui) ->
                 resize_and_move_left_image_horizontally(ui, $(this))
             stop: (event, ui) ->
@@ -252,8 +266,8 @@ $ ->
         })
         $('#right_width').slider({
             min: 0,
-            max: c_width * 2,
-            value: c_width,
+            max: c_width * 4,
+            value: c_width * 2,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
