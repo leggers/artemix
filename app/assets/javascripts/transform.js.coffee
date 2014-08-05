@@ -135,9 +135,9 @@ $ ->
             window.images.left = img
             window.images.right = img
             r_image.origin.x = -c_width
-            height = c_height + 160
+            height = c_height + 135
             width = c_width * 2
-            y = -40
+            y = -20
             r_image.origin.y = y
             r_image.width = width
             r_image.height = height
@@ -250,7 +250,7 @@ $ ->
             orientation: 'vertical',
             min: 0,
             max: c_height * 2,
-            value: c_height + 160,
+            value: c_height + 135,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
@@ -273,7 +273,7 @@ $ ->
             orientation: 'vertical',
             min: 0,
             max: c_height * 2,
-            value: c_height + 160,
+            value: c_height + 135,
             start: (event, ui) ->
                 update_slider_value($(this), ui)
             slide: (event, ui) ->
