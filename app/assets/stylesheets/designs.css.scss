@@ -10,6 +10,10 @@ $wp: relative;
 $wh: 660px;
 $ww: 300px;
 
+body {
+    font-family: 'Lato';
+}
+
 #left_model_image {
     display: none;
 }
@@ -105,7 +109,7 @@ $ww: 300px;
 .file-upload {
     width: 550px;
     background-color: #ed4faf;
-    font-size: 20px;
+    font-size: 23px;
     padding: 5px;
     margin-bottom: 15px;
 
@@ -119,7 +123,7 @@ $ww: 300px;
 }
 
 .tooltip-wrapper {
-    font-size: 15px;
+    font-size: 18px;
     float: left;
     width: 250px;
     margin-left: 15px;
@@ -134,23 +138,3 @@ $ww: 300px;
     float: left;
     width: 330px;
 }
-
-// .drop-encourage {
-//     position: absolute;
-//     height: 85%;
-//     width: 100%;
-//     background-color: rgba(200, 200, 200, .5);
-//     top: 0;
-//     left: 0;
-//     font-size: 50px;
-//     text-align: center;
-//     padding-top: 10%;
-//     display: none;
-// }
-
-// .model {
-//     position: $wp;
-//     left: 2 * $ww + 100;
-//     width: $ww;
-//     height: $wh;
-// }
