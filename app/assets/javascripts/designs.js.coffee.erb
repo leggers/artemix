@@ -89,13 +89,13 @@ $ ->
             if mouse_in
                 event.preventDefault()
 
-                CAMERA_DIST += event.originalEvent.wheelDeltaY
+                CAMERA_DIST -= event.originalEvent.deltaY * 1.5
                 check_camera_dist()
 
                 camera.position.z = CAMERA_DIST
                 camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
-                window.mesh.rotation.y += event.originalEvent.wheelDeltaX / 150
+                window.mesh.rotation.y -= event.originalEvent.deltaX / 100
 
                 window.render()
 

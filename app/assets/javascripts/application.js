@@ -15,4 +15,5 @@
 //= require jquery.remotipart
 //= require three.min
 //= require OBJLoader
+//= require jquery.mousewheel.min
 //= require_tree .
