@@ -48,26 +48,32 @@ $ ->
     room.position.z = -1000
     # scene.add(room)
 
-    loading_manager = new THREE.LoadingManager()
-    loading_manager.onProgress = (item, loaded, total) ->
-        console.log(item, loaded, total)
-
-    model_loader = new THREE.JSONLoader(loading_manager)
-    model_loader.load( "<%= asset_path 'widelegLonghair5.js' %>", (geometry, materials) ->
-        for material in materials
-            material.ambient.setHex(0xffffff)
-            material.color.setHex(0xffffff)
-        mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
-        mesh.scale.set(2.3, 2.3, 2.3)
-        # the model is oriented with the y-axis pointing toward the top of the screen
-        mesh.position.set(0, -190, 0)
-        mesh.rotation.y = Math.PI/2
-        scene.add(mesh)
-        console.log(mesh)
-        model = mesh
-        window.mesh = mesh
-        window.paint_model()
-        window.render()
+    model_loader = new THREE.JSONLoader()
+    model_loader.loadAjaxJSON(
+        model_loader,
+        "<%= asset_path 'widelegLonghair5.js' %>",
+        (geometry, materials) ->
+            for material in materials
+                material.ambient.setHex(0xffffff)
+                material.color.setHex(0xffffff)
+            mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
+            mesh.scale.set(2.3, 2.3, 2.3)
+            # the model is oriented with the y-axis pointing toward the top of the screen
+            mesh.position.set(0, -190, 0)
+            mesh.rotation.y = Math.PI/2
+            scene.add(mesh)
+            console.log('loaded mesh')
+            console.log(mesh)
+            model = mesh
+            window.mesh = mesh
+            window.setTimeout( () ->
+                window.paint_model()
+                window.render()
+            , 5000)
+        ,"/",
+        (progress, result) ->
+            console.log('progress: ', progress)
+            console.log('result', result)
     )
 
     callbacks = {
