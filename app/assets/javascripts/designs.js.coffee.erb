@@ -62,18 +62,18 @@ $ ->
             mesh.position.set(0, -190, 0)
             mesh.rotation.y = Math.PI/2
             scene.add(mesh)
-            console.log('loaded mesh')
             console.log(mesh)
             model = mesh
             window.mesh = mesh
             window.setTimeout( () ->
                 window.paint_model()
                 window.render()
+                $('.loading').hide()
             , 5000)
         ,"/",
         (progress, result) ->
-            console.log('progress: ', progress)
-            console.log('result', result)
+            # console.log('progress: ', progress)
+            # console.log('result', result)
     )
 
     callbacks = {

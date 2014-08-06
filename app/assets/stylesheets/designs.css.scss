@@ -139,4 +139,17 @@ body {
 .model {
     float: left;
     width: 330px;
+
+    .loading {
+        position: relative;
+        width: 180px;
+        margin: auto;
+        font-size: 18px;
+        top: 150px;
+
+        .another-center {
+            width: 10px;
+            margin: auto;
+        }
+    }
 }
