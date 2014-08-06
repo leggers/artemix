@@ -118,12 +118,16 @@ $ww: 300px;
     }
 }
 
-.reveal-template {
+.tooltip-wrapper {
     font-size: 15px;
     float: left;
     width: 250px;
     margin-left: 15px;
     background-color: #333333;
+
+    .tooltip {
+        display: none;
+    }
 }
 
 .model {

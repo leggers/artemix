@@ -154,13 +154,16 @@ $ ->
     toggle_canvases = (event) ->
         l_div = $('.left_wrapper')
         r_div = $('.right_wrapper')
+        tooltip = $('.tooltip')
 
         if l_div.is(":visible")
             l_div.hide()
             r_div.hide()
+            tooltip.hide()
         else
             l_div.show()
             r_div.show()
+            tooltip.show()
 
     draw_right_image = ->
         if window.images.right != undefined
