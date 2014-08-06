@@ -152,18 +152,14 @@ $ ->
         reader.readAsDataURL(file)
 
     toggle_canvases = (event) ->
-        l_div = $('.left_wrapper')
-        r_div = $('.right_wrapper')
+        $('.left_wrapper').toggle('slide')
+        $('.right_wrapper').toggle('slide')
         tooltip = $('.tooltip')
 
-        if l_div.is(":visible")
-            l_div.hide()
-            r_div.hide()
-            tooltip.hide()
+        if tooltip.is(":visible")
+            tooltip.slideUp()
         else
-            l_div.show()
-            r_div.show()
-            tooltip.show()
+            tooltip.slideDown()
 
     draw_right_image = ->
         if window.images.right != undefined
