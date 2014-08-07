@@ -1,3 +1,62 @@
 // Place all the styles related to the artworks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$shrink-logo-first: 480px;
+$shrink-logo-second: 380px;
+
+#bomb_nav {
+  background-color: rgba(0, 0, 0, .8);
+  font-size: 20pt;
+  font-weight: 400;
+  border-width: 0px;
+  padding-top: 10px;
+}
+
+.navbar-brand {
+  margin: auto;
+  background: asset-url('/bombsheller-logo.png');
+  background-size: cover;
+  width: 380px;
+
+  @media screen and (max-width: $shrink-logo-first) {
+    margin-top: 5px;
+    width: 300px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: $shrink-logo-second) {
+    margin-top: 8px;
+    width: 250px;
+    height: 34px;
+  }
+}
+
+#bomb_nav .nav a,
+.navbar-form > input.btn-success,
+a {
+  color: white;
+  -webkit-transition: color .2s ease;
+  -moz-transition: color .2s ease;
+  -o-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+#bomb_nav .navbar-default .navbar-nav > .open > a:hover,
+#bomb_nav .navbar-default .navbar-nav > .open > a:focus,
+#bomb_nav .nav a:hover {
+  color: #ed4faf;
+}
+
+#bomb_nav_options a {
+  text-decoration: none;
+  font-size: 27px;
+}
+
+.navbar > .container-fluid .navbar-brand {
+  margin-left: 0px;
+}
+
+.nav input.btn {
+  display: none;
+}

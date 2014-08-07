@@ -16,4 +16,5 @@
 //= require three.min
 //= require OBJLoader
 //= require jquery.mousewheel.min
+//= require bootstrap-sprockets
 //= require_tree .

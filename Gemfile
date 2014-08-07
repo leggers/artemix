@@ -80,5 +80,5 @@ gem 'delayed_job_active_record'
 gem 'remotipart'
 
 # Bootstrap
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'

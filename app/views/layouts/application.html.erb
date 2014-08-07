@@ -11,7 +11,38 @@
 </head>
 <body>
 
-<%= yield %>
+    <div id='bomb_nav' class='navbar navbar-default' role='navigation'>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="http://shop.bombsheller.com" class='navbar-brand'></a>
+            </div>
+
+            <div class='navbar-collapse collapse' id='bomb_nav_options'>
+                <ul class='nav navbar-nav'>
+                    <li><a href="http://shop.bombsheller.com">SHOP</a></li>
+                    <li class='dropdown'>
+                        <a href="http://bombsheller.com/artists/">
+                            ARTISTS
+                        </a>
+                    </li>
+                    <li class='dropdown'>
+                        <a href="http://bombsheller.com/about/">
+                            ABOUT
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <%= yield %>
 
 </body>
 </html>
