@@ -54,7 +54,7 @@ body {
     #left_height {
         height: $wh;
         display: none;
-        left: 15px;
+        left: 13px;
         z-index: 20;
         top: 28px;
     }
@@ -63,7 +63,7 @@ body {
         width: $ww;
         left: $ll;
         display: none;
-        top: 25px;
+        top: 29px;
     }
 
     #left_rotation {
@@ -100,7 +100,7 @@ body {
 
     #right_height {
         height: $wh;
-        left: $ww;
+        left: $ww + 1;
         display: none;
         top: 28px;
     }
@@ -108,7 +108,7 @@ body {
     #right_width {
         width: $ww;
         display: none;
-        top: 25px;
+        top: 29px;
     }
 
     #right_rotation {
