@@ -124,12 +124,12 @@ $ ->
 
     file_handler = (file) ->
         $('.drop-here').hide()
-        $('.loading').show()
+        $('.file-upload .loading').show()
         img = new Image()
         reader = new FileReader()
 
         reader.onload = (theFile) ->
-            $('.loading').hide()
+            $('.file-upload .loading').hide()
             $('.drop-here').show()
             img.src = theFile.target.result
             window.images.left = img
