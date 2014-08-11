@@ -49,10 +49,10 @@ $ ->
                 material.ambient.setHex(0xffffff)
                 material.color.setHex(0xffffff)
             mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials))
-            mesh.scale.set(2.3, 2.3, 2.3)
+            mesh.scale.set(2, 2, 2)
             # the model is oriented with the y-axis pointing toward the top of the screen
-            mesh.position.set(0, -190, 0)
-            mesh.rotation.y = Math.PI/2
+            mesh.position.set(0, -140, 0)
+            mesh.rotation.y = Math.PI/2.2
             scene.add(mesh)
             console.log(mesh)
             model = mesh
