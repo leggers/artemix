@@ -1,61 +1,70 @@
-<h2>Artemix: Preview Your Bombsheller Leggings Design</h2>
+<h1>Artemix: Preview Your Bombsheller Leggings Design</h1>
 
-<div class='instructions'>
-    <div class='step'>1. In Illustrator, toggle the view mode to off on the "Design Info" and "Guides" Layers.</div>
-    <div class='step'>2. File -> Save for Web...</div>
-    <div class='step'>3. Make sure "Clip to Artboard" is check on!</div>
-    <div class='step'>4. Save as "Very High" quality JPEG. (Quality: 80%)</div>
-    <div class='step'>5. Use the drop zone below.</div>
-    <br>
-    <div class='step'>Please understand that this app is a work in progress and <strong>should not be treated as an exact representation of how your design will look</strong>. It's pretty close, though.</div>
-</div>
-<br>
-<div class='file-upload'>
-    <div class='drop-here'>
-        Drop design here! Or use the button to select file.
-        <br>
-        <input type='file' id='design-image' name='files[]' multiple />
+<div class='row donna'>
+    <div class='col-md-6'>
+        <div class='file-upload'>
+            <div class='drop-here'>
+                Drop exported design here! Or select file with button.
+                <br>
+                <input type='file' id='design-image' name='files[]' multiple />
+            </div>
+            <div class='loading'>
+                Loading Design...
+            </div>
+        </div>
+
+        <div class='model'>
+            <div class='loading'>
+                Loading Donna Prima...
+            </div>
+        </div>
     </div>
-    <div class='loading'>
-        Loading Design...
+
+    <div class='col-md-6'>
+        <h2>Instructions</h2>
+        <div class='instructions'>
+            <div class='step'>1. In Illustrator, turn off the "Design Info" and "Guides" Layers.</div>
+            <div class='step'>2. File -> Save for Web...</div>
+            <div class='step'>3. Make sure "Clip to Artboard" is check on!</div>
+            <div class='step'>4. Save as "Very High" quality JPEG. (Quality: 80%)</div>
+            <div class='step'>5. Use the drop zone above Donna Prima.</div>
+            <br>
+            <div class='step'>Please understand that this is a work in progress and <strong>should not be treated as an exact representation of how your design will look</strong>. It's pretty close, though. We're working to make it perfect.</div>
+        </div>
     </div>
 </div>
 
-<div class='model'>
-    <div class='loading'>
-        Loading Donna Prima...
+<div class='row'>
+    <canvas id='left_model_image' width='600' height='1320'></canvas>
+    <div class='left_wrapper'>
+        <div id='left_rotation'></div>
+        <div id='left_height'></div>
+        <canvas id="left_leg" width="300" height="660"></canvas>
+        <%= image_tag "left_leg.png", :size => "300x660", :id => "left_cover" %>
+        <canvas id="left_cover_canvas" width="300" height="660"></canvas>
+        <div id='left_width'></div>
     </div>
-</div>
 
-<canvas id='left_model_image' width='600' height='1320'></canvas>
-<div class='left_wrapper'>
-    <div id='left_rotation'></div>
-    <div id='left_height'></div>
-    <canvas id="left_leg" width="300" height="660"></canvas>
-    <%= image_tag "left_leg.png", :size => "300x660", :id => "left_cover" %>
-    <canvas id="left_cover_canvas" width="300" height="660"></canvas>
-    <div id='left_width'></div>
-</div>
-
-<canvas id='right_model_image' width='600' height='1320'></canvas>
-<div class='right_wrapper'>
-    <div id='right_rotation'></div>
-    <div id='right_height'></div>
-    <canvas id="right_leg"width="300" height="660"></canvas>
-    <%= image_tag "right_leg.png", :size => "300x660", :id => "right_cover" %>
-    <canvas id="right_cover_canvas"width="300" height="660"></canvas>
-    <div id='right_width'></div>
-</div>
-
-<div class='tooltip-wrapper'>
-    <div class='reveal-template'>
-        Want to make some tweaks to your design directly in this page?
-        Click this box to show/hide our experimental in-browser editor.
+    <canvas id='right_model_image' width='600' height='1320'></canvas>
+    <div class='right_wrapper'>
+        <div id='right_rotation'></div>
+        <div id='right_height'></div>
+        <canvas id="right_leg"width="300" height="660"></canvas>
+        <%= image_tag "right_leg.png", :size => "300x660", :id => "right_cover" %>
+        <canvas id="right_cover_canvas"width="300" height="660"></canvas>
+        <div id='right_width'></div>
     </div>
-    <div class='tooltip'>
-        <br>
-        Click and drag to move the images.
-        Use the sliders to stretch your design.
+
+    <div class='tooltip-wrapper'>
+        <div class='reveal-template'>
+            Want to make some tweaks to your design directly in this page?
+            Click this box to show/hide our experimental in-browser editor.
+        </div>
+        <div class='tooltip'>
+            <br>
+            Click and drag to move the images.
+            Use the sliders to stretch your design.
+        </div>
     </div>
 </div>
 

@@ -10,12 +10,20 @@ $wp: relative;
 $wh: 660px;
 $ww: 300px;
 
+h1, h2 {
+    margin-top: 0px !important;
+}
+
 body {
     font-family: 'Lato';
 }
 
+.donna {
+    margin-top: 20px;
+}
+
 .instructions {
-    width: 590px;
+    width: 100%;
 }
 
 #left_model_image {
@@ -117,7 +125,7 @@ body {
 }
 
 .file-upload {
-    width: 590px;
+    width: 100%;
     background-color: #ed4faf;
     font-size: 23px;
     padding: 5px;
@@ -125,6 +133,7 @@ body {
 
     input {
         margin-top: 15px;
+        font-size: 15px;
     }
 
     .loading {
