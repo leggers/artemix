@@ -21,6 +21,9 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
+    # The "model contexts" are hidden canvases double the size of the ones on the page.
+    # They are also horizontally flipped because the UV map of the model gets exported flipped.
+    # They are used to "paint the mode" in the designs JavaScript.
     r_model_context = $('#right_model_image')[0].getContext('2d')
     r_model_context.translate(c_width * 2, 0)
     r_model_context.scale(-1, 1)
@@ -160,6 +163,17 @@ $ ->
             tooltip.slideUp()
         else
             tooltip.slideDown()
+
+    ############################################################################
+    #
+    # Everything below this comment was written with the intention of a having
+    # an in-browser design creation tool. When we realized that we wanted a
+    # previewing tool instead, all of this code became somewhat useless. It is
+    # kept here so artists can tweak their designs a little and to make me
+    # (@leggers) feel better about having toiled over it. Perhaps it will be
+    # useful in future versions of Artemix.
+    #
+    ############################################################################
 
     draw_right_image = ->
         if window.images.right != undefined

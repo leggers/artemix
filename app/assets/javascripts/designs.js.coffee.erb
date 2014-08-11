@@ -7,6 +7,7 @@ $ ->
     model = null
     $surrounding_div = $('.model') # 3d canvas
 
+    # Camera setup.
     VIEW_ANGLE = 45
     ASPECT_RATIO = 330 / 720
     NEAR_DIST = 0.1
@@ -14,10 +15,12 @@ $ ->
     CAMERA_DIST = 500
     CAMERA_HEIGHT = 0
 
+    # WebGL box's size on page.
     col_width = $surrounding_div.parent().width()
     MODEL_VIEW_WIDTH = col_width
     MODEL_VIEW_HEIGHT = MODEL_VIEW_WIDTH / ASPECT_RATIO
 
+    # Event data setup.
     mouse_down = false
     mouse_x = 0
     mouse_y = 0
