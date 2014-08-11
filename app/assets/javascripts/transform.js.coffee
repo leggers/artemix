@@ -138,9 +138,9 @@ $ ->
             window.images.left = img
             window.images.right = img
             r_image.origin.x = -c_width
-            height = c_height + 90
+            height = c_height + 95
             width = c_width * 2
-            y = -35
+            y = -40
             r_image.origin.y = y
             r_image.width = width
             r_image.height = height
