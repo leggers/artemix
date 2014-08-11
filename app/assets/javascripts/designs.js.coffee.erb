@@ -5,22 +5,24 @@
 $ ->
 
     model = null
+    $surrounding_div = $('.model') # 3d canvas
 
-    MODEL_VIEW_WIDTH = 330
-    MODEL_VIEW_HEIGHT = 720
     VIEW_ANGLE = 45
-    ASPECT_RATIO = MODEL_VIEW_WIDTH / MODEL_VIEW_HEIGHT
+    ASPECT_RATIO = 330 / 720
     NEAR_DIST = 0.1
     FAR_DIST = 10000
     CAMERA_DIST = 500
     CAMERA_HEIGHT = 0
+
+    col_width = $surrounding_div.parent().width()
+    MODEL_VIEW_WIDTH = col_width
+    MODEL_VIEW_HEIGHT = MODEL_VIEW_WIDTH / ASPECT_RATIO
 
     mouse_down = false
     mouse_x = 0
     mouse_y = 0
     mouse_in = false
 
-    $surrounding_div = $('.model') # 3d canvas
     renderer = new THREE.WebGLRenderer( {antialias: true} )
     camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT_RATIO, NEAR_DIST, FAR_DIST )
     scene = new THREE.Scene()
@@ -37,16 +39,6 @@ $ ->
     pointLight = new THREE.PointLight(0xffffff, 1, 0)
     pointLight.position.set(200, 500, 500)
     scene.add(pointLight)
-
-    room_geom = new THREE.CubeGeometry( 1500, 1500, 1500 )
-    stone_texture = THREE.ImageUtils.loadTexture( "<%= asset_path 'stone.jpg' %>" )
-    # stone_texture.wrapS = stone_texture.wrapT = THREE.RepeatWrap
-    # stone_texture.repeat.set(400, 400)
-    stone = new THREE.MeshPhongMaterial( { color: 0xffffff, map: stone_texture } )
-    room = new THREE.Mesh(room_geom, stone)
-    window.room = room
-    room.position.z = -1000
-    # scene.add(room)
 
     model_loader = new THREE.JSONLoader()
     model_loader.loadAjaxJSON(
