@@ -1,6 +1,6 @@
 set :application, 'artemix'
 set :repo_url, 'git@github.com:leggers/artemix.git'
-set :branch, 'master'
+set :branch, ENV["BRANCH_NAME"] || ENV["BRANCH"] || 'master'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
