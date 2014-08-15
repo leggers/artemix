@@ -25,11 +25,12 @@ $ ->
     # They are also horizontally flipped because the UV map of the model gets exported flipped.
     # They are used to "paint the mode" in the designs JavaScript.
     r_model_context = $('#right_model_image')[0].getContext('2d')
-    r_model_context.translate(c_width * 2, 0)
-    r_model_context.scale(-1, 1)
+    r_model_context.translate(c_width, 0)
+    r_model_context.scale(-.5, 1)
     l_model_context = $('#left_model_image')[0].getContext('2d')
-    l_model_context.translate(c_width * 2, 0)
-    l_model_context.scale(-1, 1)
+    l_model_context.translate(c_width, 0)
+    l_model_context.scale(-.5, 1)
+    l_model_context.translate(-c_width * 2, 0)
 
     r_model_context.fillStyle = '#ed4faf'
     r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
@@ -137,9 +138,9 @@ $ ->
             img.src = theFile.target.result
             window.images.left = img
             window.images.right = img
-            r_image.origin.x = 0
+            r_image.origin.x = -c_width
             height = c_height
-            width = c_width
+            width = c_width * 2
             y = 0
             r_image.origin.y = y
             r_image.width = width
