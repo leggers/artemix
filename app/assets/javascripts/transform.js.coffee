@@ -137,10 +137,10 @@ $ ->
             img.src = theFile.target.result
             window.images.left = img
             window.images.right = img
-            r_image.origin.x = -c_width
-            height = c_height + 95
-            width = c_width * 2
-            y = -40
+            r_image.origin.x = 0
+            height = c_height
+            width = c_width
+            y = 0
             r_image.origin.y = y
             r_image.width = width
             r_image.height = height
