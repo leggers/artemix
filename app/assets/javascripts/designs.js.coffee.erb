@@ -60,6 +60,8 @@ $ ->
             console.log(mesh)
             model = mesh
             window.mesh = mesh
+            window.add_leg('left', '/designingforbodies_artemixoutput_final.jpg')
+            window.add_leg('right', '/designingforbodies_artemixoutput_final.jpg')
             window.setTimeout( () ->
                 window.paint_model()
                 window.render()

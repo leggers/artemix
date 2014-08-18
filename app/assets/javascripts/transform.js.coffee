@@ -44,10 +44,10 @@ $ ->
     right_image_origin = ->
         r_image = {
             origin: {
-                x: 0,
+                x: -c_width,
                 y: 0
             },
-            width: c_width,
+            width: 2 * c_width,
             height: c_height
         }
 
@@ -57,7 +57,7 @@ $ ->
                 x: 0,
                 y: 0
             },
-            width: c_width,
+            width: 2 * c_width,
             height: c_height
         }
 
@@ -138,16 +138,6 @@ $ ->
             img.src = theFile.target.result
             window.images.left = img
             window.images.right = img
-            r_image.origin.x = -c_width
-            height = c_height
-            width = c_width * 2
-            y = 0
-            r_image.origin.y = y
-            r_image.width = width
-            r_image.height = height
-            l_image.width = width
-            l_image.height = height
-            l_image.origin.y = y
             draw_left_image()
             draw_right_image()
             show_resize_sliders("left")
