@@ -168,16 +168,16 @@ $ ->
 
     draw_right_image = ->
         if window.images.right != undefined
-            r_context.clearRect(0, 0, c_width, c_height)
-            r_model_context.clearRect(0, 0, c_width * 2, c_height * 2)
+            r_context.fillRect(0, 0, c_width, c_height)
+            r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
             r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
             r_model_context.drawImage(window.images.right, r_image.origin.x * 2, r_image.origin.y * 2, r_image.width * 2, r_image.height * 2)
             window.paint_model()
 
     draw_left_image = ->
         if window.images.left != undefined
-            l_context.clearRect(0, 0, c_width, c_height)
-            l_model_context.clearRect(0, 0, c_width * 2, c_height * 2)
+            l_context.fillRect(0, 0, c_width, c_height)
+            l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
             l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
             l_model_context.drawImage(window.images.left, l_image.origin.x * 2, l_image.origin.y * 2, l_image.width * 2, l_image.height * 2)
             window.paint_model()
