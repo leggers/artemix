@@ -138,6 +138,7 @@ $ ->
     $canvas.mouseenter(callbacks.mousein)
     $canvas.mouseleave(callbacks.mouseout)
     $(window).bind('mousewheel', callbacks.scroll)
+    $canvas.click(window.paint_model)
 
     camera.lookAt(new THREE.Vector3(0,CAMERA_HEIGHT,0))
 
