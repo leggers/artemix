@@ -12,7 +12,7 @@ $ ->
     ASPECT_RATIO = 330 / 720
     NEAR_DIST = 0.1
     FAR_DIST = 10000
-    CAMERA_DIST = 500
+    CAMERA_DIST = 480
     CAMERA_HEIGHT = 0
 
     # WebGL box's size on page.
@@ -55,7 +55,7 @@ $ ->
             mesh.scale.set(2, 2, 2)
             # the model is oriented with the y-axis pointing toward the top of the screen
             mesh.position.set(0, -140, 0)
-            mesh.rotation.y = Math.PI/2.2
+            mesh.rotation.y = Math.PI
             scene.add(mesh)
             console.log(mesh)
             model = mesh
