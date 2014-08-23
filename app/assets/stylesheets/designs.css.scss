@@ -10,8 +10,48 @@ $wp: relative;
 $wh: 668px;
 $ww: 300px;
 
+.model {
+    float: left;
+    width: 100%;
+
+    .loading {
+        position: relative;
+        width: 180px;
+        margin: auto;
+        font-size: 18px;
+        top: 150px;
+
+        .another-center {
+            width: 10px;
+            margin: auto;
+        }
+    }
+}
+
 h1, h2 {
     margin-top: 0px !important;
+}
+
+.artemix-border {
+    border-style: solid;
+    border-width: 3px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -khtml-border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.artemix-brand {
+    font-size: 50px;
+    font-style: bold;
+
+    .logo {
+        width: 350px;
+        height: 56px;
+        background-image: asset-url('artemix-logo.png');
+        background-size: cover;
+    }
 }
 
 body {
@@ -24,6 +64,44 @@ body {
 
 .instructions {
     width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+
+    .step {
+        margin-top: 5px;
+    }
+}
+
+.file-upload {
+    width: 100%;
+    border-color: #ed4faf;
+    color: #ed4faf;
+    font-size: 23px;
+    padding: 5px;
+    margin-bottom: 15px;
+
+    input {
+        margin-top: 15px;
+        font-size: 15px;
+    }
+
+    .loading {
+        display: none;
+    }
+}
+
+.tooltip-wrapper {
+    font-size: 18px;
+    float: left;
+    width: 250px;
+    padding: 10px;
+    line-height: 20px;
+    background-color: #333333;
+    margin-top: 30px;
+
+    .tooltip {
+        display: none;
+    }
 }
 
 #left_model_image {
@@ -121,54 +199,5 @@ body {
 
     #right_rotation {
         display: none;
-    }
-}
-
-.file-upload {
-    width: 100%;
-    background-color: #ed4faf;
-    font-size: 23px;
-    padding: 5px;
-    margin-bottom: 15px;
-
-    input {
-        margin-top: 15px;
-        font-size: 15px;
-    }
-
-    .loading {
-        display: none;
-    }
-}
-
-.tooltip-wrapper {
-    font-size: 18px;
-    float: left;
-    width: 250px;
-    padding: 10px;
-    line-height: 20px;
-    background-color: #333333;
-    margin-top: 30px;
-
-    .tooltip {
-        display: none;
-    }
-}
-
-.model {
-    float: left;
-    width: 100%;
-
-    .loading {
-        position: relative;
-        width: 180px;
-        margin: auto;
-        font-size: 18px;
-        top: 150px;
-
-        .another-center {
-            width: 10px;
-            margin: auto;
-        }
     }
 }
