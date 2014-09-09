@@ -54,6 +54,10 @@ h1, h2 {
     }
 }
 
+.calls-to-action > a {
+    float: right;
+}
+
 body {
     font-family: 'Lato';
 }
@@ -85,7 +89,7 @@ body {
         font-size: 15px;
     }
 
-    .loading {
+    .loading, .complete {
         display: none;
     }
 }

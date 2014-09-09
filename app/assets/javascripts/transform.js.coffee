@@ -134,7 +134,11 @@ $ ->
 
         reader.onload = (theFile) ->
             $('.file-upload .loading').hide()
-            $('.drop-here').show()
+            $('.file-upload .complete').show()
+            window.setTimeout ( ->
+                $('.file-upload .complete').hide()
+                $('.drop-here').show()
+            ), 2000
             img.src = theFile.target.result
             window.images.left = img
             window.images.right = img

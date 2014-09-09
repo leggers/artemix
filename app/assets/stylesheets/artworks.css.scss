@@ -35,11 +35,15 @@ $shrink-logo-second: 380px;
 #bomb_nav .nav a,
 .navbar-form > input.btn-success,
 a {
-  color: white;
   -webkit-transition: color .2s ease;
   -moz-transition: color .2s ease;
   -o-transition: color .2s ease;
   transition: color .2s ease;
+}
+
+#bomb_nav .nav a,
+.navbar-form > input.btn-success {
+  color: white;
 }
 
 #bomb_nav .navbar-default .navbar-nav > .open > a:hover,
