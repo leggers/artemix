@@ -21,16 +21,16 @@ $ ->
     r_context = rcanvas.getContext('2d')
     l_context = $('#left_leg')[0].getContext('2d')
 
-    # The "model contexts" are hidden canvases double the size of the ones on the page.
+    # The "model contexts" are hidden canvases quadruple the size of the ones on the page.
     # They are also horizontally flipped because the UV map of the model gets exported flipped.
-    # They are used to "paint the mode" in the designs JavaScript.
+    # They are used to "paint the model" in the designs JavaScript.
     r_model_context = $('#right_model_image')[0].getContext('2d')
-    r_model_context.translate(c_width, 0)
+    r_model_context.translate(2 * c_width, 0)
     r_model_context.scale(-.5, 1)
     l_model_context = $('#left_model_image')[0].getContext('2d')
     l_model_context.translate(c_width, 0)
     l_model_context.scale(-.5, 1)
-    l_model_context.translate(-c_width * 2, 0)
+    l_model_context.translate(-3 * c_width * 2, 0)
 
     r_model_context.fillStyle = '#ed4faf'
     r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
@@ -166,20 +166,60 @@ $ ->
     #
     ############################################################################
 
+    hidden_canvas = $('#right_model_image')[0]
+    hidden_canvas_width = hidden_canvas.width
+    hidden_to_visible_canvas_size_ratio = hidden_canvas_width / c_width
+
     draw_right_image = ->
         if window.images.right != undefined
             r_context.fillRect(0, 0, c_width, c_height)
-            r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-            r_context.drawImage(window.images.right, r_image.origin.x, r_image.origin.y, r_image.width, r_image.height)
-            r_model_context.drawImage(window.images.right, r_image.origin.x * 2, r_image.origin.y * 2, r_image.width * 2, r_image.height * 2)
+
+            r_model_context.fillRect(
+                0,
+                0,
+                c_width * hidden_to_visible_canvas_size_ratio,
+                c_height * hidden_to_visible_canvas_size_ratio)
+
+            r_context.drawImage(
+                window.images.right,
+                r_image.origin.x,
+                r_image.origin.y,
+                r_image.width,
+                r_image.height)
+
+            r_model_context.drawImage(
+                window.images.right,
+                r_image.origin.x * hidden_to_visible_canvas_size_ratio,
+                r_image.origin.y * hidden_to_visible_canvas_size_ratio,
+                r_image.width * hidden_to_visible_canvas_size_ratio,
+                r_image.height * hidden_to_visible_canvas_size_ratio)
+
             window.paint_model()
 
     draw_left_image = ->
         if window.images.left != undefined
             l_context.fillRect(0, 0, c_width, c_height)
-            l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-            l_context.drawImage(window.images.left, l_image.origin.x, l_image.origin.y, l_image.width, l_image.height)
-            l_model_context.drawImage(window.images.left, l_image.origin.x * 2, l_image.origin.y * 2, l_image.width * 2, l_image.height * 2)
+
+            l_model_context.fillRect(
+                0,
+                0,
+                c_width * hidden_to_visible_canvas_size_ratio,
+                c_height * hidden_to_visible_canvas_size_ratio)
+
+            l_context.drawImage(
+                window.images.left,
+                l_image.origin.x,
+                l_image.origin.y,
+                l_image.width,
+                l_image.height)
+
+            l_model_context.drawImage(
+                window.images.left,
+                l_image.origin.x * hidden_to_visible_canvas_size_ratio,
+                l_image.origin.y * hidden_to_visible_canvas_size_ratio,
+                l_image.width * hidden_to_visible_canvas_size_ratio,
+                l_image.height * hidden_to_visible_canvas_size_ratio)
+
             window.paint_model()
 
     move_right_image = (diffs) ->
