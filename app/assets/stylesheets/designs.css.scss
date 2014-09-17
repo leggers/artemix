@@ -47,15 +47,19 @@ h1, h2 {
     font-style: bold;
 
     .logo {
-        width: 350px;
-        height: 56px;
-        background-image: asset-url('artemix-logo.png');
+        width: 410px;
+        height: 95px;
+        background-image: asset-url('artemix-logo.jpg');
         background-size: cover;
     }
 }
 
 .calls-to-action > a {
     float: right;
+}
+
+.tips > div {
+    margin-bottom: 10px;
 }
 
 body {
