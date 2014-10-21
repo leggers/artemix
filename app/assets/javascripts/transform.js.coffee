@@ -32,13 +32,13 @@ $ ->
     l_model_context.scale(-.5, 1)
     l_model_context.translate(-3 * c_width * 2, 0)
 
-    r_model_context.fillStyle = '#ed4faf'
+    r_model_context.fillStyle = '#fff'
     r_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-    r_context.fillStyle = '#ed4faf'
+    r_context.fillStyle = '#fff'
     r_context.fillRect(0, 0, c_width, c_height)
-    l_model_context.fillStyle = '#ed4faf'
+    l_model_context.fillStyle = '#fff'
     l_model_context.fillRect(0, 0, c_width * 2, c_height * 2)
-    l_context.fillStyle = '#ed4faf'
+    l_context.fillStyle = '#fff'
     l_context.fillRect(0, 0, c_width, c_height)
 
     right_image_origin = ->
