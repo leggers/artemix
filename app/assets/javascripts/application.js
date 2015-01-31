@@ -17,4 +17,7 @@
 //= require OBJLoader
 //= require jquery.mousewheel.min
 //= require bootstrap-sprockets
+//= require rgbcolor
+//= require StackBlur
+//= require canvg
 //= require_tree .

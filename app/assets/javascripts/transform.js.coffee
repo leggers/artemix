@@ -132,22 +132,33 @@ $ ->
         img = new Image()
         reader = new FileReader()
 
-        reader.onload = (theFile) ->
-            $('.file-upload .loading').hide()
-            $('.file-upload .complete').show()
-            window.setTimeout ( ->
-                $('.file-upload .complete').hide()
-                $('.drop-here').show()
-            ), 2000
-            img.src = theFile.target.result
-            window.images.left = img
-            window.images.right = img
-            draw_left_image()
-            draw_right_image()
-            show_resize_sliders("left")
-            show_resize_sliders("right")
+        if (file.name.match('.svg') != null)
+            reader.onload = process_svg
+            reader.readAsText(file)
+        else
+            reader.onload = process_image
+            reader.readAsDataURL(file)
 
-        reader.readAsDataURL(file)
+    process_svg = (svg) ->
+        window.svg = svg.target.result
+        canvg(document.getElementById('left_model_image'), window.svg)
+        canvg(document.getElementById('right_model_image'), window.svg)
+        window.paint_model()
+
+    process_image = (image) ->
+        $('.file-upload .loading').hide()
+        $('.file-upload .complete').show()
+        window.setTimeout ( ->
+            $('.file-upload .complete').hide()
+            $('.drop-here').show()
+        ), 2000
+        img.src = image.target.result
+        window.images.left = img
+        window.images.right = img
+        draw_left_image()
+        draw_right_image()
+        show_resize_sliders("left")
+        show_resize_sliders("right")
 
     toggle_canvases = (event) ->
         $('.left_wrapper').toggle('slide')
